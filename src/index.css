@@ -1,96 +1,232 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Futuristic Portfolio Design System */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Dark theme with neon accents */
+    --background: 220 13% 8%;
+    --foreground: 210 40% 98%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 220 13% 12%;
+    --card-foreground: 210 40% 98%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 220 13% 12%;
+    --popover-foreground: 210 40% 98%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 180 100% 50%;
+    --primary-foreground: 220 13% 8%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 290 95% 65%;
+    --secondary-foreground: 220 13% 8%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 220 13% 15%;
+    --muted-foreground: 215 20.2% 65.1%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 180 100% 50%;
+    --accent-foreground: 220 13% 8%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 220 13% 20%;
+    --input: 220 13% 15%;
+    --ring: 180 100% 50%;
 
-    --radius: 0.5rem;
+    --radius: 1rem;
 
-    --sidebar-background: 0 0% 98%;
+    /* Glassmorphism */
+    --glass-bg: 220 13% 15% / 0.1;
+    --glass-border: 220 13% 30% / 0.2;
+    --glass-blur: 20px;
 
-    --sidebar-foreground: 240 5.3% 26.1%;
+    /* Neon glows */
+    --glow-cyan: 180 100% 50%;
+    --glow-magenta: 290 95% 65%;
+    --glow-purple: 270 95% 70%;
 
-    --sidebar-primary: 240 5.9% 10%;
+    /* Custom gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(180 100% 50%), hsl(290 95% 65%));
+    --gradient-dark: linear-gradient(135deg, hsl(220 13% 8%), hsl(220 13% 12%));
+    --gradient-glass: linear-gradient(135deg, 
+      hsl(220 13% 15% / 0.1), 
+      hsl(220 13% 20% / 0.05)
+    );
 
-    --sidebar-primary-foreground: 0 0% 98%;
+    /* Shadows */
+    --shadow-glow: 0 0 30px hsl(var(--glow-cyan) / 0.3);
+    --shadow-glow-hover: 0 0 50px hsl(var(--glow-cyan) / 0.5);
+    --shadow-glass: 0 8px 32px hsl(220 13% 0% / 0.3);
 
-    --sidebar-accent: 240 4.8% 95.9%;
+    /* Animations */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+}
 
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+@layer base {
+  * {
+    @apply border-border;
   }
 
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+  body {
+    @apply bg-background text-foreground font-inter;
+    font-family: 'Inter', sans-serif;
+  }
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+  ::-webkit-scrollbar-track {
+    @apply bg-muted;
+  }
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary rounded-full;
+    box-shadow: 0 0 10px hsl(var(--glow-cyan) / 0.5);
+  }
+}
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+@layer components {
+  /* Glassmorphism effect */
+  .glass {
+    background: linear-gradient(135deg, 
+      hsl(220 13% 15% / 0.1), 
+      hsl(220 13% 20% / 0.05)
+    );
+    backdrop-filter: blur(20px);
+    border: 1px solid hsl(220 13% 30% / 0.2);
+  }
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+  /* Glow effects */
+  .glow-cyan {
+    box-shadow: 0 0 30px hsl(var(--glow-cyan) / 0.3);
+  }
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+  .glow-magenta {
+    box-shadow: 0 0 30px hsl(var(--glow-magenta) / 0.3);
+  }
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+  .glow-hover:hover {
+    box-shadow: 0 0 50px hsl(var(--glow-cyan) / 0.5);
+  }
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+  /* Text glow */
+  .text-glow {
+    text-shadow: 0 0 20px hsl(var(--glow-cyan) / 0.8);
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Animated underline */
+  .animated-underline {
+    position: relative;
+  }
+
+  .animated-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gradient-primary);
+    transition: width 0.3s ease;
+  }
+
+  .animated-underline:hover::after {
+    width: 100%;
+  }
+
+  /* Pulse animation */
+  .pulse-glow {
+    animation: pulseGlow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes pulseGlow {
+    0%, 100% {
+      box-shadow: 0 0 20px hsl(var(--glow-cyan) / 0.3);
+    }
+    50% {
+      box-shadow: 0 0 40px hsl(var(--glow-cyan) / 0.6);
+    }
+  }
+
+  /* Glitch effect */
+  .glitch {
+    position: relative;
+    color: hsl(var(--foreground));
+    animation: glitch 2s linear infinite;
+  }
+
+  .glitch::before,
+  .glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .glitch::before {
+    animation: glitchTop 1s linear infinite;
+    clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+  }
+
+  .glitch::after {
+    animation: glitchBottom 1.5s linear infinite;
+    clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+    -webkit-clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+  }
+
+  @keyframes glitch {
+    2%, 64% {
+      transform: translate(2px, 0) skew(0deg);
+    }
+    4%, 60% {
+      transform: translate(-2px, 0) skew(0deg);
+    }
+    62% {
+      transform: translate(0, 0) skew(5deg);
+    }
+  }
+
+  @keyframes glitchTop {
+    2%, 64% {
+      transform: translate(2px, -2px);
+    }
+    4%, 60% {
+      transform: translate(-2px, 2px);
+    }
+    62% {
+      transform: translate(13px, -1px) skew(-13deg);
+    }
+  }
+
+  @keyframes glitchBottom {
+    2%, 64% {
+      transform: translate(-2px, 0);
+    }
+    4%, 60% {
+      transform: translate(-2px, 0);
+    }
+    62% {
+      transform: translate(-22px, 5px) skew(21deg);
+    }
   }
 }
 
