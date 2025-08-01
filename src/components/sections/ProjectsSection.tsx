@@ -1,224 +1,247 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Button } from '@/components/ui/button';
 
-interface Project {
-  id: number;
-  title: string;
-  description: string;
-  tech: string[];
-  image: string;
-  link: string;
-}
+gsap.registerPlugin(ScrollTrigger);
 
 const ProjectsSection: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
-  const [hoveredProject, setHoveredProject] = useState<number | null>(null);
+  const featuredRef = useRef<HTMLDivElement>(null);
+  const [currentProject, setCurrentProject] = useState(0);
 
-  useEffect(() => {
-    const tl = gsap.timeline({ delay: 0.2 });
-
-    // Animate project cards from different directions
-    const cards = gridRef.current?.querySelectorAll('.project-card');
-    if (cards) {
-      cards.forEach((card, index) => {
-        const direction = index % 4;
-        let fromVars: any = { opacity: 0, scale: 0.8 };
-        
-        switch (direction) {
-          case 0:
-            fromVars = { ...fromVars, x: -100, y: -100 };
-            break;
-          case 1:
-            fromVars = { ...fromVars, x: 100, y: -100 };
-            break;
-          case 2:
-            fromVars = { ...fromVars, x: -100, y: 100 };
-            break;
-          case 3:
-            fromVars = { ...fromVars, x: 100, y: 100 };
-            break;
-        }
-
-        tl.fromTo(card, fromVars, {
-          opacity: 1,
-          scale: 1,
-          x: 0,
-          y: 0,
-          duration: 0.8,
-          ease: 'back.out(1.7)'
-        }, index * 0.1);
-      });
-    }
-
-    return () => {
-      tl.kill();
-    };
-  }, []);
-
-  const projects: Project[] = [
+  const projects = [
     {
-      id: 1,
-      title: "E-Commerce Platform",
-      description: "A modern e-commerce platform with real-time inventory management and advanced analytics.",
-      tech: ["React", "Node.js", "PostgreSQL", "Stripe"],
-      image: "🛒",
-      link: "#"
+      title: "Food Saver Platform",
+      description: "A dynamic web application designed to efficiently distribute surplus food, connecting donors and recipients to reduce food waste and support communities in need.",
+      tech: ["React", "Node.js", "MongoDB", "Express"],
+      image: "https://images.unsplash.com/photo-1593113646773-028c64a8f1b8?w=400",
+      link: "#",
+      github: "#"
     },
     {
-      id: 2,
-      title: "3D Portfolio Website",
-      description: "An immersive 3D portfolio showcasing interactive animations and cutting-edge web technologies.",
-      tech: ["Three.js", "GSAP", "React", "TypeScript"],
-      image: "🎮",
-      link: "#"
+      title: "AI Chat Application", 
+      description: "Real-time chat application with AI integration using OpenAI API. Built with Socket.io for real-time communication.",
+      tech: ["React", "Socket.io", "OpenAI", "Express"],
+      image: "https://images.unsplash.com/photo-1587560699334-cc4ff634909a?w=400",
+      link: "#",
+      github: "#"
     },
     {
-      id: 3,
-      title: "AI Chat Application",
-      description: "Real-time chat application with AI-powered responses and natural language processing.",
-      tech: ["Next.js", "OpenAI", "Socket.io", "MongoDB"],
-      image: "🤖",
-      link: "#"
+      title: "Task Management System",
+      description: "Collaborative task management platform with drag-and-drop functionality, team collaboration, and progress tracking.",
+      tech: ["Vue.js", "Firebase", "Vuetify", "PWA"],
+      image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=400",
+      link: "#",
+      github: "#"
     },
     {
-      id: 4,
       title: "Data Visualization Dashboard",
-      description: "Interactive dashboard for complex data visualization with real-time updates and filtering.",
-      tech: ["D3.js", "React", "Python", "FastAPI"],
-      image: "📊",
-      link: "#"
-    },
-    {
-      id: 5,
-      title: "Mobile Fitness App",
-      description: "Cross-platform fitness tracking app with workout planning and social features.",
-      tech: ["React Native", "Firebase", "Redux", "Node.js"],
-      image: "💪",
-      link: "#"
-    },
-    {
-      id: 6,
-      title: "Blockchain Voting System",
-      description: "Secure voting platform built on blockchain technology ensuring transparency and immutability.",
-      tech: ["Solidity", "Web3.js", "React", "Ethereum"],
-      image: "🗳️",
-      link: "#"
+      description: "Interactive dashboard for data visualization using D3.js and Chart.js. Connects to multiple data sources with real-time updates.",
+      tech: ["D3.js", "React", "Chart.js", "REST API"],
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400",
+      link: "#",
+      github: "#"
     }
   ];
 
-  const handleCardHover = (projectId: number | null, event?: React.MouseEvent) => {
-    setHoveredProject(projectId);
-    
-    if (projectId && event) {
-      const card = event.currentTarget as HTMLElement;
-      const rect = card.getBoundingClientRect();
-      const x = event.clientX - rect.left;
-      const y = event.clientY - rect.top;
-      
-      // Create glow effect that follows mouse
-      gsap.to(card, {
-        boxShadow: `${x/5}px ${y/5}px 50px hsl(var(--glow-cyan) / 0.4)`,
-        duration: 0.3,
-        ease: 'power2.out'
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Title animation
+      gsap.fromTo(titleRef.current, {
+        opacity: 0,
+        y: 50
+      }, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        scrollTrigger: {
+          trigger: titleRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none reverse"
+        }
       });
-    }
-  };
 
-  const handleCardClick = (project: Project) => {
-    // Add click animation
-    gsap.to(`.project-${project.id}`, {
-      scale: 0.95,
-      duration: 0.1,
-      yoyo: true,
-      repeat: 1,
-      ease: 'power2.inOut'
-    });
-  };
+      // Featured project animation
+      gsap.fromTo(featuredRef.current, {
+        opacity: 0,
+        y: 30
+      }, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        scrollTrigger: {
+          trigger: featuredRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none reverse"
+        }
+      });
+
+      // Grid animation
+      if (gridRef.current) {
+        const cards = gridRef.current.querySelectorAll('.project-card');
+        gsap.fromTo(cards, {
+          opacity: 0,
+          y: 50,
+          scale: 0.9
+        }, {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.6,
+          stagger: 0.1,
+          ease: "back.out(1.7)",
+          scrollTrigger: {
+            trigger: gridRef.current,
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none none reverse"
+          }
+        });
+      }
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  // Auto-rotate featured project
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentProject((prev) => (prev + 1) % projects.length);
+    }, 4000); // Change every 4 seconds
+
+    return () => clearInterval(interval);
+  }, [projects.length]);
 
   return (
-    <div 
-      ref={containerRef} 
-      className="h-full flex flex-col px-4 md:pl-24 md:pr-8 py-8 md:py-12 overflow-y-auto"
+    <section 
+      id="projects"
+      ref={containerRef}
+      className="min-h-screen py-20 px-4 relative overflow-hidden"
     >
-      {/* Header */}
-      <div className="mb-8 md:mb-12 text-center md:text-left">
-        <h2 className="text-3xl md:text-4xl lg:text-6xl font-bold gradient-text mb-4">
+      {/* Background effects */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5" />
+      
+      <div className="container mx-auto max-w-6xl relative z-10">
+        <h2 
+          ref={titleRef}
+          className="text-4xl md:text-6xl font-bold text-center mb-16 gradient-text"
+        >
           Featured Projects
         </h2>
-        <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto md:mx-0">
-          A showcase of my recent work, demonstrating expertise in modern web technologies 
-          and creative problem-solving.
-        </p>
-        <div className="w-24 h-1 bg-gradient-primary rounded-full mt-6 mx-auto md:mx-0" />
-      </div>
 
-      {/* Projects Grid */}
-      <div 
-        ref={gridRef} 
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 flex-1"
-      >
-        {projects.map((project) => (
-          <div
-            key={project.id}
-            className={`project-card project-${project.id} glass rounded-2xl p-6 cursor-pointer transition-all duration-300 hover:scale-105 group relative overflow-hidden`}
-            onMouseEnter={(e) => handleCardHover(project.id, e)}
-            onMouseLeave={() => handleCardHover(null)}
-            onMouseMove={(e) => hoveredProject === project.id && handleCardHover(project.id, e)}
-            onClick={() => handleCardClick(project)}
-            style={{ 
-              transform: hoveredProject === project.id ? 'rotateX(5deg) rotateY(5deg)' : 'rotateX(0deg) rotateY(0deg)',
-              transformStyle: 'preserve-3d',
-              perspective: '1000px'
-            }}
-          >
-            {/* Project Icon/Image */}
-            <div className="text-6xl mb-4 group-hover:scale-110 transition-transform duration-300">
-              {project.image}
+        {/* Featured Project Carousel */}
+        <div ref={featuredRef} className="mb-16">
+          <div className="bg-card/30 backdrop-blur-sm border border-border rounded-2xl overflow-hidden hover:border-primary/50 transition-all duration-300">
+            <div className="grid md:grid-cols-2">
+              <div className="aspect-video md:aspect-auto">
+                <img 
+                  src={projects[currentProject].image}
+                  alt={projects[currentProject].title}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="p-8 flex flex-col justify-center">
+                <h3 className="text-2xl font-bold mb-4 text-foreground">
+                  {projects[currentProject].title}
+                </h3>
+                <p className="text-muted-foreground mb-6 leading-relaxed">
+                  {projects[currentProject].description}
+                </p>
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {projects[currentProject].tech.map((tech, index) => (
+                    <span key={index} className="px-3 py-1 text-sm rounded-full bg-primary/20 text-primary border border-primary/30">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+                <div className="flex gap-4">
+                  <Button variant="outline" size="sm">
+                    Live Demo
+                  </Button>
+                  <Button variant="ghost" size="sm">
+                    GitHub
+                  </Button>
+                </div>
+              </div>
             </div>
-
-            {/* Content */}
-            <h3 className="text-xl font-bold mb-3 group-hover:text-glow transition-all duration-300">
-              {project.title}
-            </h3>
-            
-            <p className="text-muted-foreground mb-4 text-sm leading-relaxed">
-              {project.description}
-            </p>
-
-            {/* Tech Stack */}
-            <div className="flex flex-wrap gap-2 mb-4">
-              {project.tech.map((tech, index) => (
-                <span
-                  key={index}
-                  className="px-3 py-1 bg-muted rounded-full text-xs font-medium border border-border group-hover:border-primary/50 transition-colors duration-300"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-
-            {/* View Project Link */}
-            <div className="flex items-center text-primary font-medium text-sm group-hover:text-glow transition-all duration-300">
-              View Project
-              <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </div>
-
-            {/* Hover overlay */}
-            <div className="absolute inset-0 bg-gradient-primary opacity-0 group-hover:opacity-5 transition-opacity duration-300 rounded-2xl" />
-            
-            {/* Glowing border on hover */}
-            <div className="absolute inset-0 border-2 border-transparent group-hover:border-primary/30 rounded-2xl transition-all duration-300" />
           </div>
-        ))}
+          
+          {/* Project indicators */}
+          <div className="flex justify-center gap-2 mt-6">
+            {projects.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentProject(index)}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  index === currentProject ? 'bg-primary scale-125' : 'bg-primary/30'
+                }`}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* More Projects Grid */}
+        <div 
+          ref={gridRef}
+          className="grid grid-cols-1 md:grid-cols-2 gap-8"
+        >
+          {projects.slice(0, 4).map((project, index) => (
+            <div
+              key={index}
+              className="project-card group relative overflow-hidden rounded-2xl bg-card/30 backdrop-blur-sm border border-border hover:border-primary/50 transition-all duration-300 transform hover:scale-105"
+            >
+              <div className="aspect-video overflow-hidden">
+                <img 
+                  src={project.image} 
+                  alt={project.title}
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                />
+              </div>
+
+              <div className="p-6">
+                <h3 className="text-xl font-semibold mb-3 text-foreground">
+                  {project.title}
+                </h3>
+                
+                <p className="text-muted-foreground text-sm mb-4 leading-relaxed line-clamp-3">
+                  {project.description}
+                </p>
+
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {project.tech.slice(0, 3).map((tech, techIndex) => (
+                    <span 
+                      key={techIndex}
+                      className="px-2 py-1 text-xs rounded-full bg-primary/20 text-primary border border-primary/30"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="flex gap-3">
+                  <Button size="sm" variant="outline" className="flex-1 text-xs">
+                    Live Demo
+                  </Button>
+                  <Button size="sm" variant="ghost" className="flex-1 text-xs">
+                    GitHub
+                  </Button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
-      {/* Bottom decorative elements */}
-      <div className="absolute bottom-8 right-8 w-4 h-4 bg-primary rounded-full animate-ping opacity-40" />
-      <div className="absolute top-1/2 right-4 w-2 h-2 bg-secondary rounded-full animate-float opacity-30" />
-    </div>
+      {/* Floating decorative elements */}
+      <div className="absolute top-1/4 left-8 w-2 h-2 bg-primary rounded-full animate-float opacity-60" />
+      <div className="absolute bottom-1/3 right-12 w-1 h-1 bg-secondary rounded-full animate-ping opacity-40" />
+      <div className="absolute top-1/2 right-1/4 w-3 h-3 bg-accent rounded-full animate-pulse opacity-30" />
+    </section>
   );
 };
 

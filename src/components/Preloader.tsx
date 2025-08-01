@@ -65,7 +65,7 @@ const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
     };
   }, [onComplete]);
 
-  const name = "MILAD";
+  const name = "MOHIT JESWANI";
 
   return (
     <div className="preloader fixed inset-0 bg-background flex items-center justify-center z-50">

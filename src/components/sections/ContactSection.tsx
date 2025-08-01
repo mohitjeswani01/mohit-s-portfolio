@@ -221,7 +221,7 @@ const ContactSection: React.FC = () => {
               </svg>
             </div>
             <h3 className="font-semibold mb-1">Email</h3>
-            <p className="text-sm text-muted-foreground">milad@example.com</p>
+            <p className="text-sm text-muted-foreground">mohitrc@gmail.com</p>
           </div>
 
           <div className="text-center">
@@ -231,7 +231,7 @@ const ContactSection: React.FC = () => {
               </svg>
             </div>
             <h3 className="font-semibold mb-1">Phone</h3>
-            <p className="text-sm text-muted-foreground">+1 (555) 123-4567</p>
+            <p className="text-sm text-muted-foreground">+91 7499787431</p>
           </div>
 
           <div className="text-center">

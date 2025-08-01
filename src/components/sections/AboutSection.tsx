@@ -73,7 +73,7 @@ const AboutSection: React.FC = () => {
 
         <div className="space-y-6 text-base md:text-lg leading-relaxed">
           <p className="text-foreground">
-            I'm a passionate creative developer with over 5 years of experience 
+            I'm Mohit Jeswani, a passionate software developer with over 3 years of experience 
             building modern web applications. I specialize in creating immersive, 
             interactive experiences that push the boundaries of what's possible on the web.
           </p>

@@ -1,7 +1,7 @@
-import Portfolio from '@/components/Portfolio';
+import ScrollablePortfolio from '@/components/ScrollablePortfolio';
 
 const Index = () => {
-  return <Portfolio />;
+  return <ScrollablePortfolio />;
 };
 
 export default Index;
