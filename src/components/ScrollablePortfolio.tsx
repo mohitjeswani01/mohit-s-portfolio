@@ -9,6 +9,7 @@ import ProjectsSection from './sections/ProjectsSection';
 import AchievementsSection from './sections/AchievementsSection';
 import ContactSection from './sections/ContactSection';
 import Footer from './sections/Footer';
+import ProjectsSlider from './ProjectsSlider';
 
 const ScrollablePortfolio: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -47,11 +48,14 @@ const ScrollablePortfolio: React.FC = () => {
       
       <main>
         <HomeSection />
-        <ProjectsSection />
-        <AboutSection />
-        <AchievementsSection />
-        <SkillsSection />
-        <ContactSection />
+        <div className="py-20">
+          <div className="container mx-auto max-w-6xl px-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 gradient-text">
+              Featured Projects
+            </h2>
+            <ProjectsSlider />
+          </div>
+        </div>
       </main>
       
       <Footer />

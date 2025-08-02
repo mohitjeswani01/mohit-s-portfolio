@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import certificateImg from '../../assets/certificate.png';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -56,28 +57,29 @@ const AchievementsSection: React.FC = () => {
 
   const achievements = [
     {
-      title: "Full Stack Developer Certification",
-      description: "Completed comprehensive full-stack development bootcamp with focus on MERN stack",
-      date: "2023",
-      icon: "🏆"
+      title: "SYRUS HACKATHON 2025 Participant",
+      description: "Certificate of participation in SYRUS HACKATHON 2025 held on 28th - 29th March 2025 at VESIT Mumbai",
+      date: "2025",
+      icon: "🏆",
+      image: certificateImg
     },
     {
-      title: "Machine Learning Project Winner",
-      description: "First place in university ML competition for predictive analytics project",
-      date: "2023",
-      icon: "🥇"
-    },
-    {
-      title: "Open Source Contributor",
-      description: "Active contributor to multiple open-source projects with 100+ contributions",
-      date: "2022-2024",
-      icon: "🌟"
-    },
-    {
-      title: "Tech Conference Speaker",
-      description: "Presented on 'Modern Web Development' at regional tech conference",
+      title: "Full Stack Development",
+      description: "Expertise in MERN stack development with hands-on experience in real-world projects",
       date: "2024",
-      icon: "🎤"
+      icon: "💻"
+    },
+    {
+      title: "AI Integration Specialist",
+      description: "Successfully integrated AI solutions using OpenAI and Gemini APIs in web applications",
+      date: "2024",
+      icon: "🤖"
+    },
+    {
+      title: "Computer Engineering Student",
+      description: "Pursuing B.E. Computer Engineering at VESIT with CGPA 7.03",
+      date: "2022-2026",
+      icon: "🎓"
     }
   ];
 
@@ -104,6 +106,15 @@ const AchievementsSection: React.FC = () => {
               key={index}
               className="achievement-card p-6 rounded-2xl bg-card/30 backdrop-blur-sm border border-border hover:border-primary/50 transition-all duration-300 hover:scale-105 group"
             >
+              {achievement.image && (
+                <div className="mb-4">
+                  <img 
+                    src={achievement.image} 
+                    alt={achievement.title}
+                    className="w-full h-48 object-cover rounded-xl"
+                  />
+                </div>
+              )}
               <div className="flex items-start gap-4">
                 <div className="text-4xl group-hover:scale-110 transition-transform duration-300">
                   {achievement.icon}

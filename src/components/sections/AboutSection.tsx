@@ -73,37 +73,69 @@ const AboutSection: React.FC = () => {
 
         <div className="space-y-6 text-base md:text-lg leading-relaxed">
           <p className="text-foreground">
-            I'm Mohit Jeswani, a passionate software developer with over 3 years of experience 
-            building modern web applications. I specialize in creating immersive, 
-            interactive experiences that push the boundaries of what's possible on the web.
+            Hi, I'm Mohit Jeswani, a dedicated B.E. Computer Engineering student with hands-on experience in web development and AI applications.
           </p>
           
           <p className="text-muted-foreground">
-            My expertise spans across frontend and backend technologies, with a 
-            particular focus on React, TypeScript, and animation libraries like GSAP. 
-            I love combining technical excellence with creative design to deliver 
-            exceptional user experiences.
+            I developed dynamic full-stack applications using the MERN stack and integrating AI solutions. My goal is to bridge creativity and technology to build impactful solutions for real-world challenges.
           </p>
           
-          <p className="text-muted-foreground">
-            When I'm not coding, you can find me exploring new technologies, 
-            contributing to open-source projects, or experimenting with 3D graphics 
-            and interactive installations.
-          </p>
+          <div className="mt-8">
+            <h3 className="text-xl font-semibold mb-4 text-primary">Education</h3>
+            <div className="bg-card/30 backdrop-blur-sm border border-border rounded-xl p-6">
+              <h4 className="font-semibold text-foreground">Vivekanand Education Society's Institute of Technology</h4>
+              <p className="text-muted-foreground">B.E. Computer Engineering (CGPA: 7.03)</p>
+            </div>
+          </div>
+
+          <div className="mt-8">
+            <h3 className="text-xl font-semibold mb-4 text-primary">Featured Projects</h3>
+            <div className="space-y-4">
+              <div className="bg-card/30 backdrop-blur-sm border border-border rounded-xl p-6">
+                <h4 className="font-semibold text-foreground mb-2">Edu-Pilot</h4>
+                <p className="text-muted-foreground">AI-Powered course creation and study app built with Next.js, React.js and API keys of OpenAI and Gemini</p>
+              </div>
+              <div className="bg-card/30 backdrop-blur-sm border border-border rounded-xl p-6">
+                <h4 className="font-semibold text-foreground mb-2">CarConnect</h4>
+                <p className="text-muted-foreground">A premium solution for car rentals and ridesharing built with React.js, Node.js, TailwindCSS</p>
+              </div>
+              <div className="bg-card/30 backdrop-blur-sm border border-border rounded-xl p-6">
+                <h4 className="font-semibold text-foreground mb-2">StudyNotion</h4>
+                <p className="text-muted-foreground">Study mobile app built with React Native used for course selling</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-8">
+            <h3 className="text-xl font-semibold mb-4 text-primary">Contact</h3>
+            <div className="bg-card/30 backdrop-blur-sm border border-border rounded-xl p-6">
+              <p className="text-muted-foreground">📧 jeswanimohit959@gmail.com</p>
+              <p className="text-muted-foreground">📍 Mumbai, Maharashtra, India</p>
+            </div>
+          </div>
         </div>
 
-        <div className="flex gap-4 pt-4">
-          <div className="text-center">
-            <div className="text-3xl font-bold gradient-text">50+</div>
-            <div className="text-sm text-muted-foreground">Projects</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl font-bold gradient-text">5+</div>
-            <div className="text-sm text-muted-foreground">Years</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl font-bold gradient-text">100%</div>
-            <div className="text-sm text-muted-foreground">Satisfaction</div>
+        <div className="mt-8">
+          <h3 className="text-xl font-semibold mb-4 text-primary">Skills & Technologies</h3>
+          <div className="bg-card/30 backdrop-blur-sm border border-border rounded-xl p-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <h4 className="font-semibold text-foreground mb-2">Programming</h4>
+                <p className="text-muted-foreground text-sm">C, JavaScript, Java</p>
+              </div>
+              <div>
+                <h4 className="font-semibold text-foreground mb-2">Web Technologies</h4>
+                <p className="text-muted-foreground text-sm">ReactJS, Express.js, Node.js, Next.js, TailwindCSS</p>
+              </div>
+              <div>
+                <h4 className="font-semibold text-foreground mb-2">Databases</h4>
+                <p className="text-muted-foreground text-sm">MongoDB, MySQL, PostgreSQL</p>
+              </div>
+              <div>
+                <h4 className="font-semibold text-foreground mb-2">Core Concepts</h4>
+                <p className="text-muted-foreground text-sm">DSA, OOP, OS, DBMS</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

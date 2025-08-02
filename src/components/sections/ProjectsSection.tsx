@@ -14,34 +14,34 @@ const ProjectsSection: React.FC = () => {
 
   const projects = [
     {
-      title: "Food Saver Platform",
-      description: "A dynamic web application designed to efficiently distribute surplus food, connecting donors and recipients to reduce food waste and support communities in need.",
-      tech: ["React", "Node.js", "MongoDB", "Express"],
-      image: "https://images.unsplash.com/photo-1593113646773-028c64a8f1b8?w=400",
+      title: "Edu-Pilot",
+      description: "AI-Powered course creation and study app built with Next.js, React.js and API keys of OpenAI and Gemini. Features intelligent course generation, interactive learning modules, and personalized study paths.",
+      tech: ["Next.js", "React.js", "OpenAI", "Gemini API", "TailwindCSS"],
+      image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600",
       link: "#",
       github: "#"
     },
     {
-      title: "AI Chat Application", 
-      description: "Real-time chat application with AI integration using OpenAI API. Built with Socket.io for real-time communication.",
-      tech: ["React", "Socket.io", "OpenAI", "Express"],
-      image: "https://images.unsplash.com/photo-1587560699334-cc4ff634909a?w=400",
+      title: "CarConnect", 
+      description: "A premium solution for car rentals and ridesharing built with React.js, Node.js, TailwindCSS. Includes real-time booking, payment integration, and user management system.",
+      tech: ["React.js", "Node.js", "TailwindCSS", "MongoDB", "Express"],
+      image: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=600",
       link: "#",
       github: "#"
     },
     {
-      title: "Task Management System",
-      description: "Collaborative task management platform with drag-and-drop functionality, team collaboration, and progress tracking.",
-      tech: ["Vue.js", "Firebase", "Vuetify", "PWA"],
-      image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=400",
+      title: "StudyNotion",
+      description: "Study mobile app built with React Native used for course selling. Features include course marketplace, video streaming, progress tracking, and payment gateway integration.",
+      tech: ["React Native", "Node.js", "MongoDB", "Express", "Payment Gateway"],
+      image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600",
       link: "#",
       github: "#"
     },
     {
-      title: "Data Visualization Dashboard",
-      description: "Interactive dashboard for data visualization using D3.js and Chart.js. Connects to multiple data sources with real-time updates.",
-      tech: ["D3.js", "React", "Chart.js", "REST API"],
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400",
+      title: "Portfolio Website",
+      description: "Modern, interactive portfolio website with 3D animations, smooth scrolling, and responsive design. Built with cutting-edge web technologies.",
+      tech: ["React", "TypeScript", "GSAP", "Spline", "TailwindCSS"],
+      image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600",
       link: "#",
       github: "#"
     }

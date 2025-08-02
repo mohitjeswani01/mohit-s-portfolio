@@ -79,41 +79,44 @@ const SkillsSection: React.FC = () => {
     {
       title: "Programming Languages:",
       skills: [
-        { name: "JavaScript", color: "bg-yellow-500" },
-        { name: "Java", color: "bg-red-500" },
-        { name: "Python", color: "bg-blue-500" }
+        { name: "C" },
+        { name: "JavaScript" },
+        { name: "Java" }
       ]
     },
     {
       title: "Web Technologies:",
       skills: [
-        { name: "React.js", color: "bg-cyan-500" },
-        { name: "Express.js", color: "bg-gray-500" },
-        { name: "Node.js", color: "bg-green-500" }
+        { name: "ReactJS" },
+        { name: "Express.js" },
+        { name: "Node.js" },
+        { name: "Next.js" },
+        { name: "TailwindCSS" }
       ]
     },
     {
-      title: "Database Systems:",
+      title: "Databases:",
       skills: [
-        { name: "MongoDB", color: "bg-green-600" },
-        { name: "Oracle SQL", color: "bg-red-600" },
-        { name: "MySQL", color: "bg-blue-600" },
-        { name: "ChromaDB", color: "bg-purple-500" }
+        { name: "MongoDB" },
+        { name: "MySQL" },
+        { name: "PostgreSQL" }
       ]
     },
     {
-      title: "Data Science & Machine Learning:",
+      title: "Core Concepts:",
       skills: [
-        { name: "Langchain", color: "bg-indigo-500" },
-        { name: "Groq", color: "bg-orange-500" }
+        { name: "Data Structures and Algorithms" },
+        { name: "Object-Oriented Programming (OOP)" },
+        { name: "Operating Systems (OS)" },
+        { name: "Database Management Systems (DBMS)" }
       ]
     },
     {
-      title: "Mathematical & Statistical Tools:",
+      title: "AI Integration:",
       skills: [
-        { name: "NumPy", color: "bg-blue-400" },
-        { name: "Pandas", color: "bg-purple-600" },
-        { name: "Matplotlib", color: "bg-green-400" }
+        { name: "OpenAI API" },
+        { name: "Gemini API" },
+        { name: "AI-Powered Applications" }
       ]
     }
   ];
@@ -122,10 +125,20 @@ const SkillsSection: React.FC = () => {
     <section 
       id="skills"
       ref={containerRef}
-      className="min-h-screen py-20 px-4 relative overflow-hidden"
+      className="min-h-screen py-20 px-4 relative overflow-hidden bg-gradient-to-br from-background via-purple-950/20 to-blue-950/20"
     >
-      {/* Background decoration */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5" />
+      {/* 3D Background */}
+      <div className="absolute inset-0 w-full h-full z-0">
+        <iframe 
+          src='https://my.spline.design/robotfloatinginspace-jU4T7zFi8d5QF4Rs3kFJ5EkI/' 
+          frameBorder='0' 
+          width='100%' 
+          height='100%'
+          title="3D Skills Background"
+          className="opacity-30"
+        />
+      </div>
+      <div className="absolute inset-0 bg-gradient-to-br from-background/80 via-purple-950/40 to-blue-950/40" />
       
       <div className="container mx-auto max-w-6xl relative z-10">
         <h2 
