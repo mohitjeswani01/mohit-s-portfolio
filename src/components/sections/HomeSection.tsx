@@ -124,51 +124,78 @@ const HomeSection: React.FC = () => {
         />
       </div>
 
-      {/* Content Overlay */}
-      <div className="relative z-10 h-full min-h-screen flex items-center justify-center px-4">
-        <div className="text-center space-y-6 md:space-y-8 max-w-4xl">
-          <div>
-            <h1 
-              ref={headlineRef}
-              className="text-4xl md:text-6xl lg:text-8xl font-bold leading-tight mb-4"
-            >
-              <div className="gradient-text text-glow">
-                {splitText("MOHIT JESWANI")}
+      {/* Content Layout */}
+      <div className="relative z-10 h-full min-h-screen flex items-center px-4">
+        <div className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+          
+          {/* Left Side - Photo */}
+          <div className="flex justify-center lg:justify-start order-1 lg:order-1">
+            <div className="relative">
+              <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary/50 shadow-2xl hover:border-primary transition-all duration-300 hover:scale-105">
+                <img 
+                  src="/mohit-photo.png" 
+                  alt="Mohit Jeswani" 
+                  className="w-full h-full object-cover"
+                />
               </div>
-              <div className="text-xl md:text-3xl lg:text-5xl font-medium text-white/90 mt-4">
-                {splitText("Software Developer")}
-              </div>
-            </h1>
-            
-            <p 
-              ref={sublineRef}
-              className="text-base md:text-lg text-white/80 max-w-2xl leading-relaxed mx-auto mt-6"
-            >
-              Crafting immersive digital experiences with cutting-edge technologies. 
-              Passionate about creating beautiful, functional, and innovative web applications.
-            </p>
+              {/* Glowing ring effect */}
+              <div className="absolute inset-0 rounded-full border-2 border-primary/30 animate-pulse"></div>
+              <div className="absolute -inset-2 rounded-full border border-primary/20 animate-spin slow"></div>
+            </div>
           </div>
 
-          <div ref={buttonsRef} className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center mt-8">
-            <Button
-              size="lg"
-              onClick={handleHireClick}
-              className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 md:px-8 py-3 md:py-4 text-base md:text-lg font-semibold rounded-xl glow-cyan hover:glow-hover transition-all duration-300 hover:scale-105"
-            >
-              Hire Me
-            </Button>
-            
-            <Button
-              variant="outline"
-              size="lg"
-              onClick={handleResumeClick}
-              className="resume-btn border-2 border-white/50 text-white hover:bg-white/10 px-6 md:px-8 py-3 md:py-4 text-base md:text-lg font-semibold rounded-xl transition-all duration-300 hover:scale-105 hover:border-white hover:glow-cyan backdrop-blur-sm"
-            >
-              <svg className="w-4 md:w-5 h-4 md:h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
-              Download Resume
-            </Button>
+          {/* Center - 3D Robot (Hidden on mobile, visible on large screens) */}
+          <div className="hidden lg:flex justify-center order-2">
+            <div className="w-96 h-96 flex items-center justify-center">
+              {/* The robot iframe will be positioned absolutely, this is just for spacing */}
+            </div>
+          </div>
+
+          {/* Right Side - Content */}
+          <div className="text-center lg:text-left space-y-6 md:space-y-8 order-3 lg:order-3">
+            <div>
+              <h1 
+                ref={headlineRef}
+                className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4"
+              >
+                <div className="gradient-text text-glow">
+                  {splitText("MOHIT JESWANI")}
+                </div>
+                <div className="text-lg md:text-2xl lg:text-3xl font-medium text-white/90 mt-4">
+                  {splitText("Software Developer")}
+                </div>
+              </h1>
+              
+              <p 
+                ref={sublineRef}
+                className="text-sm md:text-base text-white/80 leading-relaxed mt-6"
+              >
+                Crafting immersive digital experiences with cutting-edge technologies. 
+                Passionate about creating beautiful, functional, and innovative web applications.
+              </p>
+            </div>
+
+            <div ref={buttonsRef} className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center lg:justify-start mt-8">
+              <Button
+                size="lg"
+                onClick={handleHireClick}
+                className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 md:px-8 py-3 md:py-4 text-base md:text-lg font-semibold rounded-xl glow-cyan hover:glow-hover transition-all duration-300 hover:scale-105"
+              >
+                Hire Me
+              </Button>
+              
+              <Button
+                variant="outline"
+                size="lg"
+                onClick={handleResumeClick}
+                className="resume-btn border-2 border-white/50 text-white hover:bg-white/10 px-6 md:px-8 py-3 md:py-4 text-base md:text-lg font-semibold rounded-xl transition-all duration-300 hover:scale-105 hover:border-white hover:glow-cyan backdrop-blur-sm"
+              >
+                <svg className="w-4 md:w-5 h-4 md:h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                Download Resume
+              </Button>
+            </div>
           </div>
         </div>
       </div>

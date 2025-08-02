@@ -154,7 +154,8 @@ export default {
 				'slide-in-right': 'slide-in-right 0.5s ease-out',
 				'slide-out-left': 'slide-out-left 0.5s ease-out',
 				'glow-pulse': 'glow-pulse 2s ease-in-out infinite',
-				'float': 'float 3s ease-in-out infinite'
+				'float': 'float 3s ease-in-out infinite',
+				'slow': 'spin 8s linear infinite'
 			}
 		}
 	},
