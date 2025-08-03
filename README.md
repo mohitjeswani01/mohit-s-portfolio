@@ -1,73 +1,66 @@
-# Welcome to your Lovable project
+# Mohit Jeswani's Personal Portfolio
 
-## Project info
+Hi, I'm Mohit Jeswani, a passionate developer and this is the repository for my personal portfolio website. I built it to showcase my skills, projects, and experience in a clean, modern, and interactive way.
 
-**URL**: https://lovable.dev/projects/f6cfcfa5-0fc3-4602-be8f-c9490c478f55
+### ✨ [**View Live Demo**](https://portfolio.mohitcodes.xyz) ✨
 
-## How can I edit this code?
+---
 
-There are several ways of editing your application.
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![shadcn/ui](https://img.shields.io/badge/shadcn%2Fui-000000?style=for-the-badge&logo=shadcn-ui&logoColor=white)
 
-**Use Lovable**
+## 🚀 Features
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/f6cfcfa5-0fc3-4602-be8f-c9490c478f55) and start prompting.
+* **Modern Design:** A sleek and fully responsive layout built with Tailwind CSS and shadcn/ui.
+* **Interactive UI:** Smooth animations and a user-friendly experience.
+* **Project Showcase:** A dedicated section to display my work with links to live demos and source code.
+* **Skills & Experience:** A summary of my technical skills and professional background.
 
-Changes made via Lovable will be committed automatically to this repo.
+## 🛠️ Getting Started
 
-**Use your preferred IDE**
+Want to run this project locally? Follow these simple steps.
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Prerequisites
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+Make sure you have [Node.js](https://nodejs.org/) (v18 or higher) or [Bun](https://bun.sh/) installed on your machine.
 
-Follow these steps:
+### Installation & Setup
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+1.  **Clone the repository:**
+    ```sh
+    git clone [https://github.com/mohitjeswani01/mohit-s-portfolio.git](https://github.com/mohitjeswani01/mohit-s-portfolio.git)
+    ```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+2.  **Navigate to the project directory:**
+    ```sh
+    cd mohit-s-portfolio
+    ```
 
-# Step 3: Install the necessary dependencies.
-npm i
+3.  **Install dependencies:**
+    ```sh
+    # Using npm
+    npm install
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+    # Or using bun
+    bun install
+    ```
 
-**Edit a file directly in GitHub**
+4.  **Run the development server:**
+    ```sh
+    # Using npm
+    npm run dev
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+    # Or using bun
+    bun dev
+    ```
+    The application will be available at `http://localhost:5173`.
 
-**Use GitHub Codespaces**
+## 📫 Connect with me
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+I'm always open to connecting with other developers and discussing new opportunities.
 
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/f6cfcfa5-0fc3-4602-be8f-c9490c478f55) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+-   **GitHub:** [@mohitjeswani01](https://github.com/mohitjeswani01)
+-   **LinkedIn:** [https://www.linkedin.com/in/mohit-jeswani-a06838309/]
