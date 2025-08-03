@@ -158,11 +158,11 @@ const HomeSection: React.FC = () => {
                 ref={headlineRef}
                 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4"
               >
-                <div className="gradient-text text-glow">
-                  {splitText("MOHIT JESWANI")}
+                <div className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
+                  MOHIT JESWANI
                 </div>
                 <div className="text-lg md:text-2xl lg:text-3xl font-medium text-white/90 mt-4">
-                  {splitText("Software Developer")}
+                  Software Developer
                 </div>
               </h1>
               

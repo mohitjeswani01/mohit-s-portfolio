@@ -1,124 +1,98 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import IconCloud from '@/components/magicui/icon-cloud';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const SkillsSection: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
-  const iconsRef = useRef<HTMLDivElement>(null);
+  const cloudRef = useRef<HTMLDivElement>(null);
   const skillsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Title animation
-      gsap.fromTo(titleRef.current, {
-        opacity: 0,
-        y: 50
-      }, {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        scrollTrigger: {
-          trigger: titleRef.current,
-          start: "top 80%",
-          end: "bottom 20%",
-          toggleActions: "play none none reverse"
-        }
-      });
+    const tl = gsap.timeline({ delay: 0.2 });
 
-      // Icons animation
-      if (iconsRef.current) {
-        const icons = iconsRef.current.querySelectorAll('.skill-icon');
-        gsap.fromTo(icons, {
-          opacity: 0,
-          scale: 0.5,
-          rotation: -180
-        }, {
-          opacity: 1,
-          scale: 1,
-          rotation: 0,
-          duration: 0.8,
-          stagger: 0.1,
-          ease: "back.out(1.7)",
-          scrollTrigger: {
-            trigger: iconsRef.current,
-            start: "top 80%",
-            end: "bottom 20%",
-            toggleActions: "play none none reverse"
-          }
-        });
-      }
+    // Animate title
+    tl.fromTo(titleRef.current, {
+      opacity: 0,
+      y: 50,
+      filter: 'blur(10px)'
+    }, {
+      opacity: 1,
+      y: 0,
+      filter: 'blur(0px)',
+      duration: 1,
+      ease: 'power3.out'
+    });
 
-      // Skills categories animation
-      if (skillsRef.current) {
-        const categories = skillsRef.current.querySelectorAll('.skill-category');
-        gsap.fromTo(categories, {
-          opacity: 0,
-          y: 30
-        }, {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          stagger: 0.2,
-          scrollTrigger: {
-            trigger: skillsRef.current,
-            start: "top 80%",
-            end: "bottom 20%",
-            toggleActions: "play none none reverse"
-          }
-        });
-      }
-    }, containerRef);
+    // Animate icon cloud
+    tl.fromTo(cloudRef.current, {
+      scale: 0.8,
+      opacity: 0
+    }, {
+      scale: 1,
+      opacity: 1,
+      duration: 1.2,
+      ease: 'power3.out'
+    }, 0.5);
 
-    return () => ctx.revert();
+    // Animate skill categories
+    tl.fromTo(skillsRef.current?.children, {
+      opacity: 0,
+      y: 30
+    }, {
+      opacity: 1,
+      y: 0,
+      duration: 0.6,
+      stagger: 0.2,
+      ease: 'power3.out'
+    }, 1);
+
+    return () => {
+      tl.kill();
+    };
   }, []);
 
   const skillCategories = [
     {
       title: "Programming Languages:",
-      skills: [
-        { name: "C" },
-        { name: "JavaScript" },
-        { name: "Java" }
-      ]
+      skills: ["C", "JavaScript", "Java"]
     },
     {
       title: "Web Technologies:",
-      skills: [
-        { name: "ReactJS" },
-        { name: "Express.js" },
-        { name: "Node.js" },
-        { name: "Next.js" },
-        { name: "TailwindCSS" }
-      ]
+      skills: ["ReactJS", "Express.js", "Node.js", "Next.js", "TailwindCSS"]
     },
     {
       title: "Databases:",
-      skills: [
-        { name: "MongoDB" },
-        { name: "MySQL" },
-        { name: "PostgreSQL" }
-      ]
+      skills: ["MongoDB", "MySQL", "PostgreSQL"]
     },
     {
       title: "Core Concepts:",
-      skills: [
-        { name: "Data Structures and Algorithms" },
-        { name: "Object-Oriented Programming (OOP)" },
-        { name: "Operating Systems (OS)" },
-        { name: "Database Management Systems (DBMS)" }
-      ]
-    },
-    {
-      title: "AI Integration:",
-      skills: [
-        { name: "OpenAI API" },
-        { name: "Gemini API" },
-        { name: "AI-Powered Applications" }
-      ]
+      skills: ["Data Structures and Algorithms", "Object-Oriented Programming (OOP)", "Operating Systems (OS)", "Database Management Systems (DBMS)"]
     }
+  ];
+
+  const iconSlugs = [
+    "typescript",
+    "javascript",
+    "java",
+    "react",
+    "html5",
+    "css3",
+    "nodedotjs",
+    "express",
+    "nextdotjs",
+    "postgresql",
+    "mongodb",
+    "mysql",
+    "git",
+    "github",
+    "visualstudiocode",
+    "tailwindcss",
+    "c",
+    "vercel"
   ];
 
   return (
@@ -148,54 +122,35 @@ const SkillsSection: React.FC = () => {
           My Skills
         </h2>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left side - Floating skill icons */}
-          <div ref={iconsRef} className="relative h-96 lg:h-[500px]">
-            {/* Decorative floating icons */}
-            <div className="skill-icon absolute top-0 left-8 w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center backdrop-blur-sm border border-primary/20">
-              <span className="text-2xl">⚛️</span>
-            </div>
-            <div className="skill-icon absolute top-12 right-12 w-20 h-20 bg-secondary/10 rounded-full flex items-center justify-center backdrop-blur-sm border border-secondary/20">
-              <span className="text-3xl">🐍</span>
-            </div>
-            <div className="skill-icon absolute top-32 left-20 w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center backdrop-blur-sm border border-accent/20">
-              <span className="text-xl">☕</span>
-            </div>
-            <div className="skill-icon absolute top-48 right-8 w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center backdrop-blur-sm border border-primary/20">
-              <span className="text-2xl">🗄️</span>
-            </div>
-            <div className="skill-icon absolute bottom-32 left-12 w-18 h-18 bg-secondary/10 rounded-full flex items-center justify-center backdrop-blur-sm border border-secondary/20">
-              <span className="text-2xl">🌐</span>
-            </div>
-            <div className="skill-icon absolute bottom-16 right-16 w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center backdrop-blur-sm border border-accent/20">
-              <span className="text-2xl">📊</span>
-            </div>
-            <div className="skill-icon absolute bottom-8 left-1/2 transform -translate-x-1/2 w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center backdrop-blur-sm border border-primary/20">
-              <span className="text-3xl">🤖</span>
-            </div>
-          </div>
-
-          {/* Right side - Skill categories */}
-          <div ref={skillsRef} className="space-y-8">
-            {skillCategories.map((category, index) => (
-              <div key={index} className="skill-category">
-                <h3 className="text-xl font-semibold text-primary mb-4">
-                  {category.title}
-                </h3>
-                <div className="flex flex-wrap gap-3">
-                  {category.skills.map((skill, skillIndex) => (
-                    <div
-                      key={skillIndex}
-                      className="px-4 py-2 rounded-lg bg-card/50 backdrop-blur-sm border border-border hover:border-primary/50 transition-all duration-300 hover:scale-105"
-                    >
-                      <span className="text-sm font-medium">{skill.name}</span>
-                    </div>
-                  ))}
-                </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+            {/* Left Side - Icon Cloud */}
+            <div ref={cloudRef} className="flex justify-center">
+              <div className="w-full max-w-md h-96">
+                <IconCloud iconSlugs={iconSlugs} />
               </div>
-            ))}
+            </div>
+
+            {/* Right Side - Skill Categories */}
+            <div ref={skillsRef} className="space-y-6">
+              {skillCategories.map((category, index) => (
+                <div key={index} className="skill-category">
+                  <h3 className="text-xl font-semibold mb-4 bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+                    {category.title}
+                  </h3>
+                  <div className="flex flex-wrap gap-3">
+                    {category.skills.map((skill, skillIndex) => (
+                      <div
+                        key={skillIndex}
+                        className="px-4 py-2 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20 hover:border-cyan-400/50 transition-all duration-300 hover:scale-105 text-white/90"
+                      >
+                        <span className="text-sm font-medium">{skill}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
       </div>
 
       {/* Floating decorative elements */}
