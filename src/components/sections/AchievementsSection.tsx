@@ -61,39 +61,28 @@ const AchievementsSection: React.FC = () => {
       description: "Certificate of participation in SYRUS HACKATHON 2025 held on 28th - 29th March 2025 at VESIT Mumbai",
       date: "2025",
       icon: "🏆",
-      image: certificateImg
+      image: " /syrus_certificate.png"
     },
     {
-      title: "Full Stack Development",
-      description: "Expertise in MERN stack development with hands-on experience in real-world projects",
-      date: "2024",
-      icon: "💻"
-    },
-    {
-      title: "AI Integration Specialist",
+      title: "AI Integration",
       description: "Successfully integrated AI solutions using OpenAI and Gemini APIs in web applications",
       date: "2024",
-      icon: "🤖"
-    },
-    {
-      title: "Computer Engineering Student",
-      description: "Pursuing B.E. Computer Engineering at VESIT with CGPA 7.03",
-      date: "2022-2026",
-      icon: "🎓"
+      icon: "🤖",
+      image: "integration.png"
     }
   ];
 
   return (
-    <section 
+    <section
       id="achievements"
       ref={containerRef}
       className="min-h-screen py-20 px-4 relative overflow-hidden"
     >
       {/* Background decoration */}
       <div className="absolute inset-0 bg-gradient-to-bl from-secondary/5 to-accent/5" />
-      
+
       <div className="container mx-auto max-w-6xl relative z-10">
-        <h2 
+        <h2
           ref={titleRef}
           className="text-4xl md:text-6xl font-bold text-center mb-16 gradient-text"
         >
@@ -108,10 +97,10 @@ const AchievementsSection: React.FC = () => {
             >
               {achievement.image && (
                 <div className="mb-4">
-                  <img 
-                    src={achievement.image} 
+                  <img
+                    src={achievement.image}
                     alt={achievement.title}
-                    className="w-full h-48 object-cover rounded-xl"
+                    className="w-full h-full object-cover rounded-xl"
                   />
                 </div>
               )}

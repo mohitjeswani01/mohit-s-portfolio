@@ -18,32 +18,31 @@ const ProjectsSection: React.FC = () => {
       description: "AI-Powered course creation and study app built with Next.js, React.js and API keys of OpenAI and Gemini. Features intelligent course generation, interactive learning modules, and personalized study paths.",
       tech: ["Next.js", "React.js", "OpenAI", "Gemini API", "TailwindCSS"],
       image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600",
-      link: "#",
-      github: "#"
+      link: "https://edu-pilot.mohitcodes.xyz/",
+      github: "https://github.com/mohitjeswani01/edu-pilot"
     },
     {
-      title: "CarConnect", 
+      title: "CarConnect",
       description: "A premium solution for car rentals and ridesharing built with React.js, Node.js, TailwindCSS. Includes real-time booking, payment integration, and user management system.",
       tech: ["React.js", "Node.js", "TailwindCSS", "MongoDB", "Express"],
       image: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=600",
       link: "#",
-      github: "#"
+      github: "https://github.com/mohitjeswani01/CarConnect"
     },
     {
       title: "StudyNotion",
       description: "Study mobile app built with React Native used for course selling. Features include course marketplace, video streaming, progress tracking, and payment gateway integration.",
       tech: ["React Native", "Node.js", "MongoDB", "Express", "Payment Gateway"],
       image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600",
-      link: "#",
-      github: "#"
+      github: "https://github.com/mohitjeswani01/studynotion"
     },
     {
-      title: "Portfolio Website",
-      description: "Modern, interactive portfolio website with 3D animations, smooth scrolling, and responsive design. Built with cutting-edge web technologies.",
-      tech: ["React", "TypeScript", "GSAP", "Spline", "TailwindCSS"],
-      image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600",
-      link: "#",
-      github: "#"
+      title: "Clothing Shop",
+      description: "Modern, interactive clothing shop webpage with 3D animations, smooth scrolling, and responsive design. Built with cutting-edge web technologies.",
+      tech: ["React", "TypeScript", "Spline", "TailwindCSS"],
+      image: "/clothing-shop.png",
+      link: "https://puja-collection.mohitcodes.xyz/",
+      github: "https://github.com/mohitjeswani01/puja-home-couture-collection"
     }
   ];
 
@@ -118,16 +117,16 @@ const ProjectsSection: React.FC = () => {
   }, [projects.length]);
 
   return (
-    <section 
+    <section
       id="projects"
       ref={containerRef}
       className="min-h-screen py-20 px-4 relative overflow-hidden"
     >
       {/* Background effects */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5" />
-      
+
       <div className="container mx-auto max-w-6xl relative z-10">
-        <h2 
+        <h2
           ref={titleRef}
           className="text-4xl md:text-6xl font-bold text-center mb-16 gradient-text"
         >
@@ -139,7 +138,7 @@ const ProjectsSection: React.FC = () => {
           <div className="bg-card/30 backdrop-blur-sm border border-border rounded-2xl overflow-hidden hover:border-primary/50 transition-all duration-300">
             <div className="grid md:grid-cols-2">
               <div className="aspect-video md:aspect-auto">
-                <img 
+                <img
                   src={projects[currentProject].image}
                   alt={projects[currentProject].title}
                   className="w-full h-full object-cover"
@@ -159,34 +158,41 @@ const ProjectsSection: React.FC = () => {
                     </span>
                   ))}
                 </div>
+                {/* === CHANGE #1 IS HERE === */}
                 <div className="flex gap-4">
-                  <Button variant="outline" size="sm">
-                    Live Demo
-                  </Button>
-                  <Button variant="ghost" size="sm">
-                    GitHub
-                  </Button>
+                  {/* Conditionally render the Live Demo button */}
+                  {projects[currentProject].link && projects[currentProject].link !== '#' && (
+                    <a href={projects[currentProject].link} target="_blank" rel="noopener noreferrer">
+                      <Button variant="outline" size="sm">
+                        Live Demo
+                      </Button>
+                    </a>
+                  )}
+                  <a href={projects[currentProject].github} target="_blank" rel="noopener noreferrer">
+                    <Button variant="ghost" size="sm">
+                      GitHub
+                    </Button>
+                  </a>
                 </div>
               </div>
             </div>
           </div>
-          
+
           {/* Project indicators */}
           <div className="flex justify-center gap-2 mt-6">
             {projects.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentProject(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  index === currentProject ? 'bg-primary scale-125' : 'bg-primary/30'
-                }`}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentProject ? 'bg-primary scale-125' : 'bg-primary/30'
+                  }`}
               />
             ))}
           </div>
         </div>
 
         {/* More Projects Grid */}
-        <div 
+        <div
           ref={gridRef}
           className="grid grid-cols-1 md:grid-cols-2 gap-8"
         >
@@ -196,8 +202,8 @@ const ProjectsSection: React.FC = () => {
               className="project-card group relative overflow-hidden rounded-2xl bg-card/30 backdrop-blur-sm border border-border hover:border-primary/50 transition-all duration-300 transform hover:scale-105"
             >
               <div className="aspect-video overflow-hidden">
-                <img 
-                  src={project.image} 
+                <img
+                  src={project.image}
                   alt={project.title}
                   className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                 />
@@ -207,14 +213,14 @@ const ProjectsSection: React.FC = () => {
                 <h3 className="text-xl font-semibold mb-3 text-foreground">
                   {project.title}
                 </h3>
-                
+
                 <p className="text-muted-foreground text-sm mb-4 leading-relaxed line-clamp-3">
                   {project.description}
                 </p>
 
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.tech.slice(0, 3).map((tech, techIndex) => (
-                    <span 
+                    <span
                       key={techIndex}
                       className="px-2 py-1 text-xs rounded-full bg-primary/20 text-primary border border-primary/30"
                     >
@@ -223,13 +229,21 @@ const ProjectsSection: React.FC = () => {
                   ))}
                 </div>
 
+                {/* === CHANGE #2 IS HERE === */}
                 <div className="flex gap-3">
-                  <Button size="sm" variant="outline" className="flex-1 text-xs">
-                    Live Demo
-                  </Button>
-                  <Button size="sm" variant="ghost" className="flex-1 text-xs">
-                    GitHub
-                  </Button>
+                  {/* Conditionally render the Live Demo button */}
+                  {project.link && project.link !== '#' && (
+                    <a href={project.link} target="_blank" rel="noopener noreferrer" className="flex-1">
+                      <Button size="sm" variant="outline" className="w-full text-xs">
+                        Live Demo
+                      </Button>
+                    </a>
+                  )}
+                  <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex-1">
+                    <Button size="sm" variant="ghost" className="w-full text-xs">
+                      GitHub
+                    </Button>
+                  </a>
                 </div>
               </div>
             </div>

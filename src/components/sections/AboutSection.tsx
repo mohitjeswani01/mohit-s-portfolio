@@ -48,18 +48,15 @@ const AboutSection: React.FC = () => {
 
   const skills = [
     { name: 'React', icon: '⚛️', color: 'text-blue-400' },
-    { name: 'TypeScript', icon: '📘', color: 'text-blue-600' },
+    { name: 'javascript', icon: '🟨', color: 'text-blue-600' },
     { name: 'Next.js', icon: '▲', color: 'text-white' },
-    { name: 'GSAP', icon: '🎭', color: 'text-green-400' },
-    { name: 'Three.js', icon: '🎲', color: 'text-yellow-400' },
+    { name: 'Java', icon: '☕', color: 'text-green-400' },
     { name: 'Node.js', icon: '🟢', color: 'text-green-500' },
-    { name: 'Python', icon: '🐍', color: 'text-yellow-500' },
-    { name: 'Design', icon: '🎨', color: 'text-pink-400' },
   ];
 
   return (
-    <div 
-      ref={containerRef} 
+    <div
+      ref={containerRef}
       className="h-full flex flex-col md:flex-row items-center px-4 md:pl-24 md:pr-8 gap-8 md:gap-16 py-8 md:py-0 overflow-y-auto md:overflow-hidden"
     >
       {/* Bio Section */}
@@ -75,11 +72,11 @@ const AboutSection: React.FC = () => {
           <p className="text-foreground">
             Hi, I'm Mohit Jeswani, a dedicated B.E. Computer Engineering student with hands-on experience in web development and AI applications.
           </p>
-          
+
           <p className="text-muted-foreground">
             I developed dynamic full-stack applications using the MERN stack and integrating AI solutions. My goal is to bridge creativity and technology to build impactful solutions for real-world challenges.
           </p>
-          
+
           <div className="mt-8">
             <h3 className="text-xl font-semibold mb-4 text-primary">Education</h3>
             <div className="bg-card/30 backdrop-blur-sm border border-border rounded-xl p-6">

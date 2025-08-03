@@ -90,9 +90,9 @@ const HomeSection: React.FC = () => {
       repeat: 1,
       ease: 'power2.inOut'
     });
-    
+
     // Open resume
-    window.open('/resume.pdf', '_blank');
+    window.open('/Mohit__s_resume.pdf', '_blank');
   };
 
   // Split text into characters for animation
@@ -105,20 +105,20 @@ const HomeSection: React.FC = () => {
   };
 
   return (
-    <section 
+    <section
       id="home"
-      ref={containerRef} 
+      ref={containerRef}
       className="min-h-screen relative overflow-hidden"
     >
       {/* Full-screen 3D Spline Background */}
-      <div 
+      <div
         ref={splineRef}
         className="absolute inset-0 w-full h-full z-0"
       >
-        <iframe 
-          src='https://my.spline.design/robotfloatinginspace-jU4T7zFi8d5QF4Rs3kFJ5EkI/' 
-          frameBorder='0' 
-          width='100%' 
+        <iframe
+          src='https://my.spline.design/robotfloatinginspace-jU4T7zFi8d5QF4Rs3kFJ5EkI/'
+          frameBorder='0'
+          width='100%'
           height='100%'
           title="3D Robot Animation"
         />
@@ -127,14 +127,14 @@ const HomeSection: React.FC = () => {
       {/* Content Layout */}
       <div className="relative z-10 h-full min-h-screen flex items-center px-4">
         <div className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
-          
+
           {/* Left Side - Photo */}
           <div className="flex justify-center lg:justify-start order-1 lg:order-1">
             <div className="relative">
               <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary/50 shadow-2xl hover:border-primary transition-all duration-300 hover:scale-105">
-                <img 
-                  src="/mohit-photo.png" 
-                  alt="Mohit Jeswani" 
+                <img
+                  src="/mohit-photo.png"
+                  alt="Mohit Jeswani"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -154,7 +154,7 @@ const HomeSection: React.FC = () => {
           {/* Right Side - Content */}
           <div className="text-center lg:text-left space-y-6 md:space-y-8 order-3 lg:order-3">
             <div>
-              <h1 
+              <h1
                 ref={headlineRef}
                 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4"
               >
@@ -165,25 +165,18 @@ const HomeSection: React.FC = () => {
                   Software Developer
                 </div>
               </h1>
-              
-              <p 
+
+              <p
                 ref={sublineRef}
                 className="text-sm md:text-base text-white/80 leading-relaxed mt-6"
               >
-                Crafting immersive digital experiences with cutting-edge technologies. 
-                Passionate about creating beautiful, functional, and innovative web applications.
+                Crafting immersive digital experiences with cutting-edge technologies.
+                Passionate about creating beautiful, innovative web applications and artificial inteligence.
               </p>
             </div>
 
             <div ref={buttonsRef} className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center lg:justify-start mt-8">
-              <Button
-                size="lg"
-                onClick={handleHireClick}
-                className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 md:px-8 py-3 md:py-4 text-base md:text-lg font-semibold rounded-xl glow-cyan hover:glow-hover transition-all duration-300 hover:scale-105"
-              >
-                Hire Me
-              </Button>
-              
+
               <Button
                 variant="outline"
                 size="lg"

@@ -112,8 +112,8 @@ const ContactSection: React.FC = () => {
   };
 
   return (
-    <div 
-      ref={containerRef} 
+    <div
+      ref={containerRef}
       className="h-full flex items-center justify-center px-4 md:pl-24 md:pr-8 py-8 md:py-0 overflow-y-auto md:overflow-hidden"
     >
       <div className="max-w-2xl mx-auto space-y-8">
@@ -123,14 +123,14 @@ const ContactSection: React.FC = () => {
             Let's Work Together
           </h2>
           <p className="text-base md:text-lg text-muted-foreground max-w-xl mx-auto">
-            Have a project in mind? I'd love to hear about it. 
+            Have a project in mind? I'd love to hear about it.
             Let's create something amazing together.
           </p>
           <div className="w-24 h-1 bg-gradient-primary rounded-full mx-auto mt-6" />
         </div>
 
         {/* Contact Form */}
-        <form 
+        <form
           ref={formRef}
           onSubmit={handleSubmit}
           className="space-y-6"
@@ -221,7 +221,7 @@ const ContactSection: React.FC = () => {
               </svg>
             </div>
             <h3 className="font-semibold mb-1">Email</h3>
-            <p className="text-sm text-muted-foreground">mohitrc@gmail.com</p>
+            <p className="text-sm text-muted-foreground">jeswanimohit959@gmail.com</p>
           </div>
 
           <div className="text-center">
@@ -231,7 +231,7 @@ const ContactSection: React.FC = () => {
               </svg>
             </div>
             <h3 className="font-semibold mb-1">Phone</h3>
-            <p className="text-sm text-muted-foreground">+91 7499787431</p>
+            <p className="text-sm text-muted-foreground">+91 72764 23350</p>
           </div>
 
           <div className="text-center">
@@ -242,7 +242,7 @@ const ContactSection: React.FC = () => {
               </svg>
             </div>
             <h3 className="font-semibold mb-1">Location</h3>
-            <p className="text-sm text-muted-foreground">San Francisco, CA</p>
+            <p className="text-sm text-muted-foreground">Mumbai, Maharashtra</p>
           </div>
         </div>
       </div>
