@@ -41,7 +41,6 @@ const ProjectsSection: React.FC = () => {
       description: "Modern, interactive clothing shop webpage with 3D animations, smooth scrolling, and responsive design. Built with cutting-edge web technologies.",
       tech: ["React", "TypeScript", "Spline", "TailwindCSS"],
       image: "/clothing-shop.png",
-      link: "https://puja-collection.mohitcodes.xyz/",
       github: "https://github.com/mohitjeswani01/puja-home-couture-collection"
     }
   ];
