@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Lenis from '@studio-freight/lenis';
-import Preloader from './Preloader';
 import Header from './Header';
 import HomeSection from './sections/HomeSection';
 import AboutSection from './sections/AboutSection';
@@ -12,8 +11,6 @@ import Footer from './sections/Footer';
 import ProjectsSlider from './ProjectsSlider';
 
 const ScrollablePortfolio: React.FC = () => {
-  const [isLoading, setIsLoading] = useState(true);
-
   useEffect(() => {
     // Initialize Lenis for smooth scrolling
     const lenis = new Lenis({
@@ -32,20 +29,12 @@ const ScrollablePortfolio: React.FC = () => {
     return () => {
       lenis.destroy();
     };
-  }, [isLoading]);
-
-  const handlePreloaderComplete = () => {
-    setIsLoading(false);
-  };
-
-  if (isLoading) {
-    return <Preloader onComplete={handlePreloaderComplete} />;
-  }
+  }, []);
 
   return (
     <div className="bg-background text-foreground">
       <Header />
-      
+
       <main>
         <HomeSection />
         <div className="py-20">
@@ -57,7 +46,7 @@ const ScrollablePortfolio: React.FC = () => {
           </div>
         </div>
       </main>
-      
+
       <Footer />
     </div>
   );

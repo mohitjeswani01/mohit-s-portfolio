@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { gsap } from 'gsap';
 
 interface PreloaderProps {
@@ -6,105 +6,126 @@ interface PreloaderProps {
 }
 
 const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
-  const [progress, setProgress] = useState(0);
+  const [bootLines, setBootLines] = useState<string[]>([]);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
+  const hasCalledOnComplete = useRef(false); // Prevent double-calls to onComplete
 
   useEffect(() => {
-    const tl = gsap.timeline({
-      onComplete: () => {
-        // Glitch deconstruction effect
-        gsap.to('.preloader', {
-          duration: 0.8,
-          scale: 1.1,
-          filter: 'hue-rotate(360deg) contrast(2)',
-          ease: 'power2.inOut',
-          onComplete: () => {
-            gsap.to('.preloader', {
-              duration: 0.4,
-              opacity: 0,
-              scale: 0.8,
-              filter: 'blur(20px)',
-              ease: 'power2.inOut',
-              onComplete: onComplete
-            });
-          }
-        });
-      }
-    });
+    // Only run the boot sequence once
+    runBootSequence();
 
-    // Progress bar animation
-    tl.to({}, {
-      duration: 3,
-      ease: 'power2.out',
-      onUpdate: function() {
-        const currentProgress = Math.round(this.progress() * 100);
-        setProgress(currentProgress);
-      }
-    });
-
-    // Name character animation
-    const nameChars = document.querySelectorAll('.name-char');
-    nameChars.forEach((char, index) => {
-      tl.fromTo(char, {
-        opacity: 0,
-        y: 50,
-        rotateX: -90,
-        scale: 0.5
-      }, {
-        opacity: 1,
-        y: 0,
-        rotateX: 0,
-        scale: 1,
-        duration: 0.4,
-        ease: 'back.out(1.7)',
-        delay: index * 0.1
-      }, 0.5);
-    });
-
+    // Cleanup function to prevent memory leaks
     return () => {
-      tl.kill();
+      // Any cleanup if needed
     };
   }, [onComplete]);
+
+  const runBootSequence = () => {
+    const lines = [
+      "> Initializing Core Systems...",
+      "> Loading Neural Modules...",
+      "> Verifying Data Integrity...",
+      "> Establishing Secure Connection...",
+      "> ACCESS GRANTED: MOHIT_JESWANI_V1.0"
+    ];
+
+    let currentLine = 0;
+
+    const typeInterval = setInterval(() => {
+      setBootLines(prev => {
+        // Prevent duplicates if interval runs fast
+        if (prev.length >= lines.length) return prev;
+        return [...prev, lines[currentLine]];
+      });
+
+      currentLine++;
+
+      if (currentLine >= lines.length) {
+        clearInterval(typeInterval);
+        // Add a small delay before exploding
+        setTimeout(finishAnimation, 500);
+      }
+    }, 300);
+  };
+
+  const finishAnimation = () => {
+    // Prevent onComplete from being called multiple times
+    if (hasCalledOnComplete.current) return;
+    hasCalledOnComplete.current = true;
+
+    const tl = gsap.timeline();
+
+    tl.to(".boot-line", {
+      opacity: 0,
+      x: -50,
+      stagger: 0.1, // Slower stagger looks more dramatic
+      duration: 0.3,
+    })
+      .fromTo(".hero-name-char", {
+        opacity: 0,
+        scale: 2,
+        filter: "blur(10px)"
+      }, {
+        opacity: 1,
+        scale: 1,
+        filter: "blur(0px)",
+        stagger: 0.05,
+        duration: 0.4,
+        ease: "power2.out"
+      })
+      .to(containerRef.current, {
+        y: "-100%",
+        duration: 0.8,
+        ease: "power4.inOut",
+        delay: 0.8, // Let the user read the name for a split second
+        onComplete: () => {
+          // Call onComplete only once
+          onComplete();
+        }
+      });
+  };
 
   const name = "MOHIT JESWANI";
 
   return (
-    <div className="preloader fixed inset-0 bg-background flex items-center justify-center z-50">
-      <div className="text-center">
-        {/* Animated Name */}
-        <div className="mb-8">
-          <h1 className="text-6xl md:text-8xl font-bold tracking-wider">
-            {name.split('').map((char, index) => (
-              <span
-                key={index}
-                className="name-char inline-block glitch gradient-text"
-                data-text={char}
-                style={{ perspective: '1000px' }}
-              >
-                {char}
-              </span>
-            ))}
-          </h1>
+    <div
+      ref={containerRef}
+      className="fixed inset-0 bg-slate-950 z-[9999] flex flex-col items-center justify-center font-mono overflow-hidden"
+    >
+      {/* Background Grid */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(18,18,27,0.8)_2px,transparent_2px),linear-gradient(90deg,rgba(18,18,27,0.8)_2px,transparent_2px)] bg-[size:30px_30px] opacity-20 pointer-events-none" />
+
+      {/* Terminal Boot Sequence */}
+      <div ref={textRef} className="relative z-10 w-full max-w-lg px-6">
+        <div className="flex flex-col gap-2 mb-8 min-h-[160px] font-mono text-sm md:text-base">
+          {bootLines.map((line, index) => (
+            <div key={index} className="boot-line text-green-500 font-bold tracking-wide">
+              {line}
+            </div>
+          ))}
         </div>
 
-        {/* Progress Bar */}
-        <div className="w-80 mx-auto">
-          <div className="flex justify-between text-sm mb-2">
-            <span className="text-muted-foreground">Loading Portfolio</span>
-            <span className="text-primary font-mono">{progress}%</span>
-          </div>
-          <div className="w-full h-1 bg-muted rounded-full overflow-hidden">
-            <div 
-              className="h-full bg-gradient-primary transition-all duration-300 ease-out glow-cyan"
-              style={{ width: `${progress}%` }}
-            />
-          </div>
+        {/* The Final Name Reveal */}
+        <div className="text-center h-24 overflow-hidden">
+          {bootLines.length === 5 && (
+            <h1 className="text-4xl md:text-6xl font-black text-white tracking-tighter">
+              {name.split('').map((char, i) => (
+                <span key={i} className="hero-name-char inline-block">
+                  {char === ' ' ? '\u00A0' : char}
+                </span>
+              ))}
+            </h1>
+          )}
         </div>
+      </div>
 
-        {/* Glitch Effects */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-primary opacity-20 animate-ping" />
-          <div className="absolute bottom-1/3 right-1/3 w-1 h-1 bg-secondary opacity-30 animate-pulse" />
-          <div className="absolute top-1/2 left-1/2 w-3 h-3 bg-accent opacity-10 animate-bounce" />
+      {/* Loading Spinner at Bottom */}
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2">
+        <div className="flex gap-2">
+          <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '0s' }} />
+          <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '0.15s' }} />
+          <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '0.3s' }} />
         </div>
       </div>
     </div>

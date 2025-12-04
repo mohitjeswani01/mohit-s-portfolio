@@ -1,256 +1,272 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
+import {
+  Mail,
+  MapPin,
+  Phone,
+  Send,
+  Loader2,
+  Copy,
+  CheckCircle2,
+  ArrowRight
+} from 'lucide-react';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const ContactSection: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const formRef = useRef<HTMLFormElement>(null);
+  const leftColRef = useRef<HTMLDivElement>(null);
+  const rightColRef = useRef<HTMLDivElement>(null);
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    subject: '', // Added Subject field for professionalism
     message: ''
   });
+
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [copiedField, setCopiedField] = useState<string | null>(null);
   const { toast } = useToast();
 
   useEffect(() => {
-    const tl = gsap.timeline({ delay: 0.2 });
-
-    // Animate form elements from bottom
-    const formElements = formRef.current?.querySelectorAll('.form-element');
-    if (formElements) {
-      tl.fromTo(formElements, {
-        y: 50,
+    const ctx = gsap.context(() => {
+      // Animate Left Column (Info)
+      gsap.from(leftColRef.current, {
+        x: -50,
         opacity: 0,
-        filter: 'blur(10px)'
-      }, {
-        y: 0,
-        opacity: 1,
-        filter: 'blur(0px)',
-        duration: 0.8,
-        stagger: 0.2,
-        ease: 'power3.out'
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 75%",
+        }
       });
-    }
 
-    return () => {
-      tl.kill();
-    };
+      // Animate Right Column (Form)
+      gsap.from(rightColRef.current, {
+        x: 50,
+        opacity: 0,
+        duration: 1,
+        delay: 0.2, // Slight delay for visual hierarchy
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 75%",
+        }
+      });
+    }, containerRef);
+
+    return () => ctx.revert();
   }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleInputFocus = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const element = e.target;
-    gsap.to(element, {
-      scale: 1.02,
-      duration: 0.3,
-      ease: 'power2.out'
-    });
-  };
-
-  const handleInputBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const element = e.target;
-    gsap.to(element, {
-      scale: 1,
-      duration: 0.3,
-      ease: 'power2.out'
-    });
-  };
-
-  const createRippleEffect = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const button = e.currentTarget;
-    const rect = button.getBoundingClientRect();
-    const size = Math.max(rect.width, rect.height);
-    const x = e.clientX - rect.left - size / 2;
-    const y = e.clientY - rect.top - size / 2;
-
-    const ripple = document.createElement('div');
-    ripple.style.width = ripple.style.height = size + 'px';
-    ripple.style.left = x + 'px';
-    ripple.style.top = y + 'px';
-    ripple.className = 'absolute bg-white/20 rounded-full animate-ping pointer-events-none';
-
-    button.appendChild(ripple);
-
-    setTimeout(() => {
-      ripple.remove();
-    }, 600);
+  const copyToClipboard = (text: string, field: string) => {
+    navigator.clipboard.writeText(text);
+    setCopiedField(field);
+    setTimeout(() => setCopiedField(null), 2000);
+    toast({ description: `${field} copied to clipboard!` });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
+    // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 2000));
 
-    // Create success animation
-    gsap.to('.submit-btn', {
-      scale: 0.95,
-      duration: 0.1,
-      yoyo: true,
-      repeat: 1,
-      ease: 'power2.inOut'
-    });
-
     toast({
-      title: "Message Sent!",
-      description: "Thank you for reaching out. I'll get back to you soon.",
+      title: "Message Sent Successfully",
+      description: "Thanks for reaching out! I'll check my inbox and get back to you shortly.",
     });
 
-    // Reset form
-    setFormData({ name: '', email: '', message: '' });
+    setFormData({ name: '', email: '', subject: '', message: '' });
     setIsSubmitting(false);
   };
 
   return (
-    <div
+    <section
+      id="contact"
       ref={containerRef}
-      className="h-full flex items-center justify-center px-4 md:pl-24 md:pr-8 py-8 md:py-0 overflow-y-auto md:overflow-hidden"
+      className="min-h-screen py-24 px-4 bg-slate-950 relative overflow-hidden flex items-center"
     >
-      <div className="max-w-2xl mx-auto space-y-8">
-        {/* Header */}
-        <div className="text-center mb-8 md:mb-12">
-          <h2 className="text-3xl md:text-4xl lg:text-6xl font-bold gradient-text mb-4">
-            Let's Work Together
-          </h2>
-          <p className="text-base md:text-lg text-muted-foreground max-w-xl mx-auto">
-            Have a project in mind? I'd love to hear about it.
-            Let's create something amazing together.
-          </p>
-          <div className="w-24 h-1 bg-gradient-primary rounded-full mx-auto mt-6" />
-        </div>
+      {/* Background Decor */}
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-blue-900/5 blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-1/3 h-1/2 bg-purple-900/5 blur-3xl pointer-events-none" />
 
-        {/* Contact Form */}
-        <form
-          ref={formRef}
-          onSubmit={handleSubmit}
-          className="space-y-6"
-        >
-          {/* Name Input */}
-          <div className="form-element">
-            <label htmlFor="name" className="block text-sm font-medium mb-2">
-              Name
-            </label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleInputChange}
-              onFocus={handleInputFocus}
-              onBlur={handleInputBlur}
-              required
-              className="w-full px-4 py-3 glass rounded-xl bg-input border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all duration-300 text-foreground placeholder:text-muted-foreground"
-              placeholder="Your full name"
-            />
-          </div>
+      <div className="container mx-auto max-w-6xl relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
 
-          {/* Email Input */}
-          <div className="form-element">
-            <label htmlFor="email" className="block text-sm font-medium mb-2">
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleInputChange}
-              onFocus={handleInputFocus}
-              onBlur={handleInputBlur}
-              required
-              className="w-full px-4 py-3 glass rounded-xl bg-input border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all duration-300 text-foreground placeholder:text-muted-foreground"
-              placeholder="your.email@example.com"
-            />
-          </div>
+          {/* LEFT COLUMN: Context & Contact Info */}
+          <div ref={leftColRef} className="flex flex-col justify-center">
 
-          {/* Message Textarea */}
-          <div className="form-element">
-            <label htmlFor="message" className="block text-sm font-medium mb-2">
-              Message
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              value={formData.message}
-              onChange={handleInputChange}
-              onFocus={handleInputFocus}
-              onBlur={handleInputBlur}
-              required
-              rows={6}
-              className="w-full px-4 py-3 glass rounded-xl bg-input border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all duration-300 text-foreground placeholder:text-muted-foreground resize-none"
-              placeholder="Tell me about your project..."
-            />
-          </div>
+            {/* Status Badge */}
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/10 border border-green-500/20 text-green-400 text-xs font-mono mb-8 w-fit">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+              </span>
+              Open to Opportunities
+            </div>
 
-          {/* Submit Button */}
-          <div className="form-element">
-            <Button
-              type="submit"
-              disabled={isSubmitting}
-              onClick={createRippleEffect}
-              className="submit-btn w-full bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 text-lg font-semibold rounded-xl glow-cyan hover:glow-hover transition-all duration-300 hover:scale-105 relative overflow-hidden disabled:opacity-50"
-            >
-              {isSubmitting ? (
-                <div className="flex items-center justify-center">
-                  <div className="animate-spin w-5 h-5 border-2 border-primary-foreground border-t-transparent rounded-full mr-2" />
-                  Sending...
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
+              Let's start a <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+                Conversation.
+              </span>
+            </h2>
+
+            <p className="text-slate-400 text-lg leading-relaxed mb-10 max-w-md">
+              Whether you have a question about my stack, a project proposal, or just want to discuss the latest in AI — I'm all ears.
+            </p>
+
+            <div className="space-y-6">
+              {/* Email Block */}
+              <div className="group flex items-center gap-4 p-4 rounded-xl bg-slate-900/50 border border-slate-800 hover:border-blue-500/50 transition-all duration-300">
+                <div className="p-3 bg-blue-500/10 text-blue-400 rounded-lg">
+                  <Mail className="w-5 h-5" />
                 </div>
-              ) : (
-                'Send Message'
-              )}
-            </Button>
-          </div>
-        </form>
+                <div className="flex-1">
+                  <p className="text-sm text-slate-500 font-medium">Email</p>
+                  <p className="text-slate-200 font-medium">jeswanimohit959@gmail.com</p>
+                </div>
+                <button
+                  onClick={() => copyToClipboard("jeswanimohit959@gmail.com", "Email")}
+                  className="p-2 text-slate-500 hover:text-white transition-colors"
+                  title="Copy Email"
+                >
+                  {copiedField === "Email" ? <CheckCircle2 className="w-4 h-4 text-green-400" /> : <Copy className="w-4 h-4" />}
+                </button>
+              </div>
 
-        {/* Contact Info */}
-        <div className="form-element grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 pt-8 border-t border-border">
-          <div className="text-center">
-            <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-3">
-              <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
+              {/* Phone Block */}
+              <div className="group flex items-center gap-4 p-4 rounded-xl bg-slate-900/50 border border-slate-800 hover:border-purple-500/50 transition-all duration-300">
+                <div className="p-3 bg-purple-500/10 text-purple-400 rounded-lg">
+                  <Phone className="w-5 h-5" />
+                </div>
+                <div className="flex-1">
+                  <p className="text-sm text-slate-500 font-medium">Phone</p>
+                  <p className="text-slate-200 font-medium">+91 72764 23350</p>
+                </div>
+                <button
+                  onClick={() => copyToClipboard("+917276423350", "Phone")}
+                  className="p-2 text-slate-500 hover:text-white transition-colors"
+                  title="Copy Phone"
+                >
+                  {copiedField === "Phone" ? <CheckCircle2 className="w-4 h-4 text-green-400" /> : <Copy className="w-4 h-4" />}
+                </button>
+              </div>
+
+              {/* Location Block */}
+              <div className="flex items-center gap-4 p-4 rounded-xl bg-slate-900/50 border border-slate-800">
+                <div className="p-3 bg-green-500/10 text-green-400 rounded-lg">
+                  <MapPin className="w-5 h-5" />
+                </div>
+                <div>
+                  <p className="text-sm text-slate-500 font-medium">Location</p>
+                  <p className="text-slate-200 font-medium">Mumbai, Maharashtra, India</p>
+                </div>
+              </div>
             </div>
-            <h3 className="font-semibold mb-1">Email</h3>
-            <p className="text-sm text-muted-foreground">jeswanimohit959@gmail.com</p>
           </div>
 
-          <div className="text-center">
-            <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-3">
-              <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-              </svg>
-            </div>
-            <h3 className="font-semibold mb-1">Phone</h3>
-            <p className="text-sm text-muted-foreground">+91 72764 23350</p>
+          {/* RIGHT COLUMN: The Form */}
+          <div ref={rightColRef} className="relative">
+            <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl blur opacity-20" />
+
+            <form
+              onSubmit={handleSubmit}
+              className="relative bg-slate-900/80 backdrop-blur-xl p-8 rounded-2xl border border-slate-800 shadow-2xl"
+            >
+              <div className="space-y-6">
+
+                {/* Name & Email Row */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-slate-300 ml-1">Name</label>
+                    <input
+                      type="text"
+                      name="name"
+                      required
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      className="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-3 text-slate-100 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all placeholder:text-slate-600"
+                      placeholder="Please enter name"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-slate-300 ml-1">Email</label>
+                    <input
+                      type="email"
+                      name="email"
+                      required
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      className="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-3 text-slate-100 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all placeholder:text-slate-600"
+                      placeholder="mohit@example.com"
+                    />
+                  </div>
+                </div>
+
+                {/* Subject Field - PROFESSIONAL ADDITION */}
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-slate-300 ml-1">Subject</label>
+                  <input
+                    type="text"
+                    name="subject"
+                    required
+                    value={formData.subject}
+                    onChange={handleInputChange}
+                    className="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-3 text-slate-100 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all placeholder:text-slate-600"
+                    placeholder="Project Proposal / Hiring / Consulting"
+                  />
+                </div>
+
+                {/* Message Field */}
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-slate-300 ml-1">Message</label>
+                  <textarea
+                    name="message"
+                    required
+                    rows={5}
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    className="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-3 text-slate-100 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all placeholder:text-slate-600 resize-none"
+                    placeholder="Tell me about your requirements..."
+                  />
+                </div>
+
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full h-12 bg-blue-600 hover:bg-blue-500 text-white font-medium rounded-lg transition-all flex items-center justify-center gap-2 group"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="w-5 h-5 animate-spin" />
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      Send Message
+                      <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </>
+                  )}
+                </Button>
+              </div>
+            </form>
           </div>
 
-          <div className="text-center">
-            <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-3">
-              <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
-            </div>
-            <h3 className="font-semibold mb-1">Location</h3>
-            <p className="text-sm text-muted-foreground">Mumbai, Maharashtra</p>
-          </div>
         </div>
       </div>
-
-      {/* Background decorative elements */}
-      <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-primary/5 rounded-full blur-2xl animate-pulse opacity-40" />
-      <div className="absolute bottom-1/3 right-1/3 w-24 h-24 bg-secondary/10 rounded-full blur-xl animate-float opacity-30" />
-    </div>
+    </section>
   );
 };
 

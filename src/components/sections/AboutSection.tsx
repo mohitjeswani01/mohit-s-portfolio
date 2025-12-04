@@ -1,180 +1,196 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import {
+  Code2,
+  Database,
+  Terminal,
+  Cpu,
+  LineChart,
+  Server,
+  GraduationCap,
+  MapPin,
+  Mail,
+  BrainCircuit
+} from 'lucide-react';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const AboutSection: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const bioRef = useRef<HTMLDivElement>(null);
-  const skillsRef = useRef<HTMLDivElement>(null);
+  const leftColumnRef = useRef<HTMLDivElement>(null);
+  const rightColumnRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const tl = gsap.timeline({ delay: 0.2 });
-
-    // Animate bio from left
-    tl.fromTo(bioRef.current, {
-      x: -100,
-      opacity: 0,
-      filter: 'blur(10px)'
-    }, {
-      x: 0,
-      opacity: 1,
-      filter: 'blur(0px)',
-      duration: 0.8,
-      ease: 'power3.out'
-    });
-
-    // Animate skills with stagger
-    const skillItems = skillsRef.current?.querySelectorAll('.skill-item');
-    if (skillItems) {
-      tl.fromTo(skillItems, {
-        scale: 0,
+    const ctx = gsap.context(() => {
+      // 1. Text Column Animation
+      gsap.from(leftColumnRef.current, {
+        x: -50,
         opacity: 0,
-        rotateY: 180,
-        filter: 'blur(5px)'
-      }, {
-        scale: 1,
-        opacity: 1,
-        rotateY: 0,
-        filter: 'blur(0px)',
-        duration: 0.6,
-        stagger: 0.1,
-        ease: 'back.out(1.7)'
-      }, 0.4);
-    }
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 75%",
+        }
+      });
 
-    return () => {
-      tl.kill();
-    };
+      // 2. Skill Cards Stagger
+      gsap.from(".tech-card", {
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.1,
+        ease: "back.out(1.7)",
+        scrollTrigger: {
+          trigger: rightColumnRef.current,
+          start: "top 80%",
+        }
+      });
+
+      // 3. Stat/Info Items
+      gsap.from(".info-item", {
+        opacity: 0,
+        x: -20,
+        stagger: 0.1,
+        delay: 0.5,
+        scrollTrigger: {
+          trigger: leftColumnRef.current,
+          start: "top 75%",
+        }
+      });
+
+    }, containerRef);
+
+    return () => ctx.revert();
   }, []);
 
-  const skills = [
-    { name: 'React', icon: '⚛️', color: 'text-blue-400' },
-    { name: 'javascript', icon: '🟨', color: 'text-blue-600' },
-    { name: 'Next.js', icon: '▲', color: 'text-white' },
-    { name: 'Java', icon: '☕', color: 'text-green-400' },
-    { name: 'Node.js', icon: '🟢', color: 'text-green-500' },
+  // SEGMENTED SKILLS DATA (Developer vs Analyst)
+  const devSkills = [
+    { name: 'Java (OOP)', icon: Code2, color: 'text-orange-500' },
+    { name: 'React & Next.js', icon: Cpu, color: 'text-blue-400' },
+    { name: 'Node.js System', icon: Server, color: 'text-green-500' },
+  ];
+
+  const dataSkills = [
+    { name: 'Python & Pandas', icon: Terminal, color: 'text-yellow-400' },
+    { name: 'SQL & Warehousing', icon: Database, color: 'text-slate-300' },
+    { name: 'Business Insights', icon: BrainCircuit, color: 'text-purple-400' },
+    { name: 'Data Visualization', icon: LineChart, color: 'text-red-400' },
   ];
 
   return (
-    <div
+    <section
       ref={containerRef}
-      className="h-full flex flex-col md:flex-row items-center px-4 md:pl-24 md:pr-8 gap-8 md:gap-16 py-8 md:py-0 overflow-y-auto md:overflow-hidden"
+      className="min-h-screen flex items-center bg-slate-950 py-20 px-6 overflow-hidden relative"
+      id="about"
     >
-      {/* Bio Section */}
-      <div ref={bioRef} className="w-full md:w-1/2 space-y-6 text-center md:text-left">
-        <div>
-          <h2 className="text-3xl md:text-4xl lg:text-6xl font-bold mb-6 gradient-text">
-            About Me
-          </h2>
-          <div className="w-24 h-1 bg-gradient-primary rounded-full mb-8 mx-auto md:mx-0" />
-        </div>
+      {/* Background Decor */}
+      <div className="absolute top-0 right-0 w-1/3 h-full bg-blue-900/5 blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-64 h-64 bg-cyan-900/10 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="space-y-6 text-base md:text-lg leading-relaxed">
-          <p className="text-foreground">
-            Hi, I'm Mohit Jeswani, a dedicated B.E. Computer Engineering student with hands-on experience in web development and AI applications.
-          </p>
+      <div className="container mx-auto max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
 
-          <p className="text-muted-foreground">
-            I developed dynamic full-stack applications using the MERN stack and integrating AI solutions. My goal is to bridge creativity and technology to build impactful solutions for real-world challenges.
-          </p>
-
-          <div className="mt-8">
-            <h3 className="text-xl font-semibold mb-4 text-primary">Education</h3>
-            <div className="bg-card/30 backdrop-blur-sm border border-border rounded-xl p-6">
-              <h4 className="font-semibold text-foreground">Vivekanand Education Society's Institute of Technology</h4>
-              <p className="text-muted-foreground">B.E. Computer Engineering (CGPA: 7.03)</p>
+        {/* --- LEFT COLUMN: The Narrative (Identity) --- */}
+        <div ref={leftColumnRef} className="space-y-8">
+          <div>
+            <div className="flex items-center gap-2 mb-4">
+              <span className="h-px w-8 bg-blue-500"></span>
+              <span className="text-blue-400 font-mono text-sm tracking-widest uppercase">Mohit Jeswani</span>
             </div>
+            <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
+              Engineering Logic,<br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">
+                Data-Driven Insight.
+              </span>
+            </h2>
+            <p className="text-slate-400 text-lg leading-relaxed">
+              I don't just write code; I architect solutions. As a final-year Computer Engineering student,
+              I operate at the intersection of <strong>Full-Stack Development</strong> and <strong>Data Analytics</strong>.
+            </p>
+            <p className="text-slate-400 text-lg leading-relaxed mt-4">
+              My approach merges the structural discipline of Java OOP with the analytical power of Python and SQL.
+              Whether it's building a decentralized app or Data Insights, I focus on scalability and clarity.
+            </p>
           </div>
 
-          <div className="mt-8">
-            <h3 className="text-xl font-semibold mb-4 text-primary">Featured Projects</h3>
-            <div className="space-y-4">
-              <div className="bg-card/30 backdrop-blur-sm border border-border rounded-xl p-6">
-                <h4 className="font-semibold text-foreground mb-2">Edu-Pilot</h4>
-                <p className="text-muted-foreground">AI-Powered course creation and study app built with Next.js, React.js and API keys of OpenAI and Gemini</p>
-              </div>
-              <div className="bg-card/30 backdrop-blur-sm border border-border rounded-xl p-6">
-                <h4 className="font-semibold text-foreground mb-2">CarConnect</h4>
-                <p className="text-muted-foreground">A premium solution for car rentals and ridesharing built with React.js, Node.js, TailwindCSS</p>
-              </div>
-              <div className="bg-card/30 backdrop-blur-sm border border-border rounded-xl p-6">
-                <h4 className="font-semibold text-foreground mb-2">StudyNotion</h4>
-                <p className="text-muted-foreground">Study mobile app built with React Native used for course selling</p>
+          {/* Key Stats / Info Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+            <div className="info-item p-4 rounded-xl bg-slate-900/50 border border-slate-800 flex items-start gap-3">
+              <GraduationCap className="w-6 h-6 text-blue-500 mt-1" />
+              <div>
+                <h4 className="text-white font-bold">B.E. Computer Eng.</h4>
+                <p className="text-slate-400 text-sm">VESIT (CGPA: 7.03)</p>
+                <p className="text-slate-500 text-xs mt-1">Class of 2026</p>
               </div>
             </div>
-          </div>
 
-          <div className="mt-8">
-            <h3 className="text-xl font-semibold mb-4 text-primary">Contact</h3>
-            <div className="bg-card/30 backdrop-blur-sm border border-border rounded-xl p-6">
-              <p className="text-muted-foreground">📧 jeswanimohit959@gmail.com</p>
-              <p className="text-muted-foreground">📍 Mumbai, Maharashtra, India</p>
+            <div className="info-item p-4 rounded-xl bg-slate-900/50 border border-slate-800 flex items-start gap-3">
+              <MapPin className="w-6 h-6 text-green-500 mt-1" />
+              <div>
+                <h4 className="text-white font-bold">Location</h4>
+                <p className="text-slate-400 text-sm">Mumbai, India</p>
+                <p className="text-slate-500 text-xs mt-1">Open to Relocation</p>
+              </div>
             </div>
-          </div>
-        </div>
 
-        <div className="mt-8">
-          <h3 className="text-xl font-semibold mb-4 text-primary">Skills & Technologies</h3>
-          <div className="bg-card/30 backdrop-blur-sm border border-border rounded-xl p-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="info-item p-4 rounded-xl bg-slate-900/50 border border-slate-800 flex items-start gap-3 md:col-span-2">
+              <Mail className="w-6 h-6 text-purple-500 mt-1" />
               <div>
-                <h4 className="font-semibold text-foreground mb-2">Programming</h4>
-                <p className="text-muted-foreground text-sm">C, JavaScript, Java</p>
-              </div>
-              <div>
-                <h4 className="font-semibold text-foreground mb-2">Web Technologies</h4>
-                <p className="text-muted-foreground text-sm">ReactJS, Express.js, Node.js, Next.js, TailwindCSS</p>
-              </div>
-              <div>
-                <h4 className="font-semibold text-foreground mb-2">Databases</h4>
-                <p className="text-muted-foreground text-sm">MongoDB, MySQL, PostgreSQL</p>
-              </div>
-              <div>
-                <h4 className="font-semibold text-foreground mb-2">Core Concepts</h4>
-                <p className="text-muted-foreground text-sm">DSA, OOP, OS, DBMS</p>
+                <h4 className="text-white font-bold">Contact</h4>
+                <p className="text-slate-400 text-sm">jeswanimohit959@gmail.com</p>
               </div>
             </div>
           </div>
         </div>
+
+        {/* --- RIGHT COLUMN: The Arsenal (Skills) --- */}
+        <div ref={rightColumnRef} className="relative">
+
+          {/* Section 1: Development Stack */}
+          <div className="mb-10">
+            <h3 className="text-white font-bold text-xl mb-6 flex items-center gap-2">
+              <Code2 className="w-5 h-5 text-blue-400" /> System Architecture
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {devSkills.map((skill) => (
+                <div key={skill.name} className="tech-card group flex items-center gap-4 p-4 rounded-xl bg-slate-900 border border-slate-800 hover:border-blue-500/50 transition-colors">
+                  <div className={`p-2 rounded-lg bg-slate-950 ${skill.color}`}>
+                    <skill.icon className="w-6 h-6" />
+                  </div>
+                  <span className="text-slate-300 font-medium group-hover:text-white transition-colors">
+                    {skill.name}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Section 2: Analytics & Data (NEW SECTION) */}
+          <div>
+            <h3 className="text-white font-bold text-xl mb-6 flex items-center gap-2">
+              <LineChart className="w-5 h-5 text-green-400" /> Data Intelligence
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {dataSkills.map((skill) => (
+                <div key={skill.name} className="tech-card group flex items-center gap-4 p-4 rounded-xl bg-slate-900 border border-slate-800 hover:border-green-500/50 transition-colors">
+                  <div className={`p-2 rounded-lg bg-slate-950 ${skill.color}`}>
+                    <skill.icon className="w-6 h-6" />
+                  </div>
+                  <span className="text-slate-300 font-medium group-hover:text-white transition-colors">
+                    {skill.name}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Decorative Float */}
+          <div className="absolute -top-10 -right-10 w-32 h-32 border border-dashed border-slate-700 rounded-full opacity-20 animate-spin-slow pointer-events-none" />
+        </div>
+
       </div>
-
-      {/* Skills Grid */}
-      <div ref={skillsRef} className="w-full md:w-1/2">
-        <h3 className="text-xl md:text-2xl font-bold mb-8 text-center">Tech Stack</h3>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
-          {skills.map((skill, index) => (
-            <div
-              key={skill.name}
-              className="skill-item glass rounded-2xl p-6 text-center hover:glow-hover transition-all duration-300 cursor-pointer group"
-              style={{ perspective: '1000px' }}
-            >
-              <div className="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">
-                {skill.icon}
-              </div>
-              <div className={`font-semibold ${skill.color} group-hover:text-glow transition-all duration-300`}>
-                {skill.name}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Additional decorative skill items */}
-        <div className="mt-8 flex justify-center gap-4">
-          {['🚀', '💡', '⚡'].map((icon, index) => (
-            <div
-              key={index}
-              className="skill-item w-16 h-16 glass rounded-xl flex items-center justify-center text-2xl hover:glow-hover transition-all duration-300 cursor-pointer animate-float"
-              style={{ animationDelay: `${index * 0.5}s` }}
-            >
-              {icon}
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Background decorative elements */}
-      <div className="absolute top-1/4 left-1/2 w-64 h-64 bg-primary/5 rounded-full blur-3xl animate-pulse opacity-40" />
-      <div className="absolute bottom-1/4 right-1/4 w-32 h-32 bg-secondary/10 rounded-full blur-2xl animate-float opacity-30" />
-    </div>
+    </section>
   );
 };
 
