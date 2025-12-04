@@ -22,16 +22,12 @@ const App = () => {
   // Once the app loads, this flag persists for the entire session
   const [isLoading, setIsLoading] = useState(() => {
     const hasVisited = localStorage.getItem("hasVisitedPortfolio");
-    console.log("🔍 DEBUG: hasVisited from localStorage:", hasVisited);
-    const shouldShowPreloader = !hasVisited;
-    console.log("📺 DEBUG: Should show preloader?", shouldShowPreloader);
-    return shouldShowPreloader;
+    return !hasVisited; // If NOT visited, show preloader (true), else skip (false)
   });
 
   // Guard: Once isLoading is false, it should NEVER be true again in this session
   const handlePreloaderComplete = () => {
     // Mark that user has visited for the first time
-    console.log("✅ DEBUG: Preloader completed, setting localStorage flag");
     localStorage.setItem("hasVisitedPortfolio", "true");
     setIsLoading(false);
   };
