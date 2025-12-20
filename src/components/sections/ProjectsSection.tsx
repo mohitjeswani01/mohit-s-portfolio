@@ -1,26 +1,25 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Github, ArrowUpRight, Brain, Car, Database, ShoppingBag } from 'lucide-react';
+// Removed external GSAP dependency to prevent build errors
+import { Github, ArrowUpRight, Brain, Car, Database, ShoppingBag, Workflow, Youtube } from 'lucide-react';
 
-// --- 1. TYPES & DATA (Internalized for single-file portability) ---
+// --- 1. TYPES & DATA ---
 
-interface Project {
-  id: string;
-  title: string;
-  description: string;
-  tech: string[];
-  image: string;
-  links: {
-    demo?: string;
-    github: string;
-  };
-  category: string;
-  icon: React.ElementType;
-  featured: boolean;
-}
-
-const PROJECTS: Project[] = [
+const PROJECTS = [
+  {
+    id: 'agent-zero',
+    title: "AgentZero — Autonomous AI",
+    description: "Self-correcting AI operations loop. Orchestrates Kestra workflows with Llama-3 to execute code, handle errors, and automate CI/CD pipelines autonomously.",
+    tech: ["Kestra", "Llama-3", "Cline CLI", "Vercel"],
+    image: "/dashboard.png", // Auto-fetched from your YouTube ID
+    links: {
+      demo: "https://nemesis-ai-tau.vercel.app/",
+      github: "https://github.com/mohitjeswani01/nemesis_ai",
+      youtube: "https://www.youtube.com/watch?v=VKjtmXPARBQ"
+    },
+    category: "AI / DevOps",
+    icon: Workflow,
+    featured: false // TAKES THE SPOTLIGHT
+  },
   {
     id: 'edu-pilot',
     title: "Edu-Pilot",
@@ -66,7 +65,7 @@ const PROJECTS: Project[] = [
     title: "Clothing Shop",
     description: "High-performance e-commerce frontend featuring 3D asset rendering (Spline) and optimized asset delivery pipelines.",
     tech: ["React", "TypeScript", "Spline 3D", "Tailwind"],
-    image: "/clothing-shop.png", // Ensure this image is in your public folder
+    image: "/clothing-shop.png",
     links: {
       github: "https://github.com/mohitjeswani01/puja-home-couture-collection"
     },
@@ -78,12 +77,12 @@ const PROJECTS: Project[] = [
 
 // --- 2. SUB-COMPONENT: SPOTLIGHT CARD ---
 
-const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
-  const divRef = useRef<HTMLDivElement>(null);
+const ProjectCard = ({ project }) => {
+  const divRef = useRef(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [opacity, setOpacity] = useState(0);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleMouseMove = (e) => {
     if (!divRef.current) return;
     const rect = divRef.current.getBoundingClientRect();
     setPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
@@ -98,7 +97,7 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className="relative group h-full rounded-2xl border border-slate-800 bg-slate-900/50 overflow-hidden hover:border-slate-600 transition-colors duration-300 flex flex-col"
+      className="relative group h-full rounded-2xl border border-slate-800 bg-slate-900/50 overflow-hidden hover:border-slate-600 transition-colors duration-300 flex flex-col shadow-lg"
     >
       {/* Dynamic Spotlight Gradient */}
       <div
@@ -110,7 +109,7 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
       />
 
       {/* Image Area */}
-      <div className="relative h-48 md:h-56 overflow-hidden border-b border-slate-800">
+      <div className="relative h-48 md:h-56 overflow-hidden border-b border-slate-800 group-hover:border-slate-600/50 transition-colors">
         <div className="absolute top-3 right-3 z-20 bg-black/70 backdrop-blur-md px-3 py-1 rounded-full text-xs font-mono text-blue-400 border border-blue-500/30 shadow-lg">
           {project.category}
         </div>
@@ -126,10 +125,10 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
       {/* Content Area */}
       <div className="p-6 flex flex-col flex-grow relative z-20">
         <div className="flex items-center gap-3 mb-3">
-          <div className="p-2 bg-blue-500/10 rounded-lg text-blue-400">
+          <div className="p-2 bg-blue-500/10 rounded-lg text-blue-400 border border-blue-500/20">
             <project.icon className="w-5 h-5" />
           </div>
-          <h3 className="text-xl font-bold text-slate-100 tracking-tight">{project.title}</h3>
+          <h3 className="text-xl font-bold text-slate-100 tracking-tight group-hover:text-blue-400 transition-colors">{project.title}</h3>
         </div>
 
         <p className="text-slate-400 text-sm leading-relaxed mb-6 flex-grow">
@@ -145,21 +144,30 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
           ))}
         </div>
 
-        {/* Actions - Manual Buttons (No imports needed) */}
-        <div className="flex items-center gap-3 mt-auto">
+        {/* Actions */}
+        <div className="flex flex-wrap items-center gap-2 mt-auto">
           {project.links.demo && project.links.demo !== '#' && (
-            <a href={project.links.demo} target="_blank" rel="noopener noreferrer" className="flex-1">
-              <button className="w-full py-2 px-4 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-sm font-medium transition-all flex items-center justify-center gap-2 group/btn">
-                Live Demo
+            <a href={project.links.demo} target="_blank" rel="noopener noreferrer" className="flex-1 min-w-[100px]">
+              <button className="w-full py-2 px-3 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-sm font-medium transition-all flex items-center justify-center gap-2 group/btn shadow-lg shadow-blue-900/20">
+                Live
                 <ArrowUpRight className="w-4 h-4 transition-transform group-hover/btn:-translate-y-0.5 group-hover/btn:translate-x-0.5" />
               </button>
             </a>
           )}
 
-          <a href={project.links.github} target="_blank" rel="noopener noreferrer" className={project.links.demo ? "flex-1" : "w-full"}>
-            <button className="w-full py-2 px-4 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-sm font-medium transition-all flex items-center justify-center gap-2 border border-slate-700">
+          {project.links.youtube && (
+            <a href={project.links.youtube} target="_blank" rel="noopener noreferrer" className="flex-1 min-w-[100px]">
+              <button className="w-full py-2 px-3 rounded-lg bg-red-500/10 hover:bg-red-600 text-red-400 hover:text-white text-sm font-medium transition-all flex items-center justify-center gap-2 border border-red-500/20 hover:border-red-600 group/yt">
+                <Youtube className="w-4 h-4" />
+                Watch
+              </button>
+            </a>
+          )}
+
+          <a href={project.links.github} target="_blank" rel="noopener noreferrer" className={project.links.demo || project.links.youtube ? "flex-1 min-w-[100px]" : "w-full"}>
+            <button className="w-full py-2 px-3 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-sm font-medium transition-all flex items-center justify-center gap-2 border border-slate-700 hover:border-slate-600">
               <Github className="w-4 h-4" />
-              GitHub
+              Code
             </button>
           </a>
         </div>
@@ -170,51 +178,13 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
 
 // --- 3. MAIN COMPONENT: PROJECTS SECTION ---
 
-gsap.registerPlugin(ScrollTrigger);
-
-const ProjectsSection: React.FC = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const headerRef = useRef<HTMLDivElement>(null);
-  const gridRef = useRef<HTMLDivElement>(null);
-
+const ProjectsSection = () => {
   // Logic to split Featured vs Normal
   const featuredProject = PROJECTS.find(p => p.featured);
   const otherProjects = PROJECTS.filter(p => !p.featured);
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Header Fade In
-      gsap.from(headerRef.current, {
-        y: 30,
-        opacity: 0,
-        duration: 1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: headerRef.current,
-          start: "top 85%",
-        }
-      });
-
-      // Grid Stagger
-      gsap.from(".project-card-entry", {
-        y: 50,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: gridRef.current,
-          start: "top 75%",
-        }
-      });
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, []);
-
   return (
     <section
-      ref={containerRef}
       className="min-h-screen py-24 px-4 bg-slate-950 relative overflow-hidden"
       id="projects"
     >
@@ -231,7 +201,7 @@ const ProjectsSection: React.FC = () => {
       <div className="container mx-auto max-w-7xl relative z-10">
 
         {/* Section Header */}
-        <div ref={headerRef} className="text-center mb-16 md:mb-24">
+        <div className="text-center mb-16 md:mb-24 animate-in fade-in slide-in-from-bottom-4 duration-700">
           <div className="inline-block mb-3 px-3 py-1 bg-blue-500/10 rounded-full border border-blue-500/20">
             <span className="text-blue-400 text-xs font-semibold tracking-wider uppercase">Projects & Analytics</span>
           </div>
@@ -244,7 +214,7 @@ const ProjectsSection: React.FC = () => {
         </div>
 
         {/* The Grid */}
-        <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-fr">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-fr animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-150 fill-mode-backwards">
 
           {/* Featured Project (Spans 2 columns on desktop) */}
           {featuredProject && (
@@ -262,7 +232,7 @@ const ProjectsSection: React.FC = () => {
         </div>
 
         {/* Footer Link */}
-        <div className="mt-20 text-center">
+        <div className="mt-20 text-center animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-300">
           <a
             href="https://github.com/mohitjeswani01"
             target="_blank"
