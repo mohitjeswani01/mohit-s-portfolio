@@ -22,6 +22,18 @@ const ProjectsSlider: React.FC = () => {
       }
     },
     {
+      title: "Agent-Zero",
+      description: "Self-correcting AI operations loop. Orchestrates Kestra workflows with Llama-3 to execute code, handle errors, and automate CI/CD pipelines autonomously.",
+      tech: ["Kestra", "Llama-3", "Cline CLI", "Docker"],
+      image: "/dashboard.png",
+      role: "Autonomous System",
+      // Specific Links for Agent-Zero
+      links: {
+        demo: "https://nemesis-ai-tau.vercel.app/",
+        source: "https://github.com/mohitjeswani01/nemesis_ai"
+      }
+    },
+    {
       title: "CarConnect",
       description: "Enterprise vehicle rental platform. Features real-time booking states, complex SQL relationship modeling, and secure payment gateways.",
       tech: ["React", "Node.js", "MongoDB", "Express"],

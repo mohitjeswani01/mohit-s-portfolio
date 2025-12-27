@@ -202,7 +202,7 @@ const HomeSection: React.FC = () => {
             {/* Floating Badge 2 */}
             <div className="absolute -right-6 bottom-20 bg-[#0a0a0a] border border-gray-800 p-3 rounded-lg shadow-xl hidden md:block animate-bounce delay-1000">
               <Code2 className="text-cyan-400 mb-1" size={20} />
-              <div className="text-[10px] text-gray-400 font-mono">WEB<br />DEVELOPMENT</div>
+              <div className="text-[10px] text-gray-400 font-mono">SOFTWARE<br />DEVELOPMENT</div>
             </div>
 
           </div>
