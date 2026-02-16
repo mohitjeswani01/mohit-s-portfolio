@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Award, ShieldCheck, Trophy, Calendar, ExternalLink } from 'lucide-react';
+import { Award, ShieldCheck, Trophy, Calendar, ExternalLink, Brain } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -86,6 +86,16 @@ const AchievementsSection: React.FC = () => {
       image: "/syrus_certificate.png",
       type: "Award",
       link: "#" // No link yet, will render as static text
+    },
+    {
+      title: "AI Agents Assemble Participant",
+      organization: "WeMakeDevs",
+      description: "Built 'AgentZero', an autonomous AI agent. Explored agentic workflows and LLM orchestration during this specialized hackathon.",
+      date: "2025",
+      icon: <Brain className="w-6 h-6 text-blue-400" />,
+      image: "/certificate-of-participation.png",
+      type: "Hackathon",
+      link: "#"
     }
   ];
 
