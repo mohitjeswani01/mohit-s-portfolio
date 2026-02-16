@@ -1,10 +1,39 @@
 import React, { useEffect, useRef, useState } from 'react';
 // Removed external GSAP dependency to prevent build errors
-import { Github, ArrowUpRight, Brain, Car, Database, ShoppingBag, Workflow, Youtube } from 'lucide-react';
+import { Github, ArrowUpRight, Brain, Car, Database, ShoppingBag, Workflow, Youtube, Command, Shield } from 'lucide-react';
 
 // --- 1. TYPES & DATA ---
 
 const PROJECTS = [
+  {
+    id: 'hackathon-command-center',
+    title: "Hackathon Command Center",
+    description: "The first generative dashboard for hackathon organizers. No admin panels. Just intent. Features context-aware morphing and natural language control.",
+    tech: ["Next.js", "Generative UI", "Tambo AI", "Vercel"],
+    image: "/hackathon-command-center.png",
+    links: {
+      demo: "https://hackathon-command-center.vercel.app/",
+      github: "https://github.com/mohitjeswani01/hackathon-command-center", // Placeholder as per plan
+      youtube: "https://www.youtube.com/watch?v=2tjCw4wogH4"
+    },
+    category: "AI / Dashboard",
+    icon: Command,
+    featured: false
+  },
+  {
+    id: 'archestra-sentinel',
+    title: "Archestra Sentinel",
+    description: "Enterprise-Grade Governance & Observation Platform for agentic workflows. Bridges Archestra Gateway and Docker Engine for real-time security scoring and automated governance.",
+    tech: ["Python", "FastAPI", "Docker SDK", "React"],
+    image: "/admin-dashboard.png",
+    links: {
+      github: "https://github.com/mohitjeswani01/archestra-sentinel",
+      youtube: "https://www.youtube.com/watch?v=DppGd74_5ZE"
+    },
+    category: "AI Security / DevOps",
+    icon: Shield,
+    featured: false
+  },
   {
     id: 'agent-zero',
     title: "AgentZero — Autonomous AI",
