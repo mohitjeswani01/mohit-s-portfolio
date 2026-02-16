@@ -6,6 +6,20 @@ import { Github, ArrowUpRight, Brain, Car, Database, ShoppingBag, Workflow, Yout
 
 const PROJECTS = [
   {
+    id: 'archestra-sentinel',
+    title: "Archestra Sentinel",
+    description: "Enterprise-Grade Governance & Observation Platform for agentic workflows. Bridges Archestra Gateway and Docker Engine for real-time security scoring and automated governance.",
+    tech: ["Python", "FastAPI", "Docker SDK", "React"],
+    image: "/admin-dashboard.png",
+    links: {
+      github: "https://github.com/mohitjeswani01/archestra-sentinel",
+      youtube: "https://www.youtube.com/watch?v=DppGd74_5ZE"
+    },
+    category: "AI Security / DevOps",
+    icon: Shield,
+    featured: false
+  },
+  {
     id: 'hackathon-command-center',
     title: "Hackathon Command Center",
     description: "The first generative dashboard for hackathon organizers. No admin panels. Just intent. Features context-aware morphing and natural language control.",
@@ -18,20 +32,6 @@ const PROJECTS = [
     },
     category: "AI / Dashboard",
     icon: Command,
-    featured: false
-  },
-  {
-    id: 'archestra-sentinel',
-    title: "Archestra Sentinel",
-    description: "Enterprise-Grade Governance & Observation Platform for agentic workflows. Bridges Archestra Gateway and Docker Engine for real-time security scoring and automated governance.",
-    tech: ["Python", "FastAPI", "Docker SDK", "React"],
-    image: "/admin-dashboard.png",
-    links: {
-      github: "https://github.com/mohitjeswani01/archestra-sentinel",
-      youtube: "https://www.youtube.com/watch?v=DppGd74_5ZE"
-    },
-    category: "AI Security / DevOps",
-    icon: Shield,
     featured: false
   },
   {
