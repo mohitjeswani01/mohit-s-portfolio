@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Award, ShieldCheck, Trophy, Calendar, ExternalLink, Brain } from 'lucide-react';
+import { Award, ShieldCheck, Trophy, Calendar, ExternalLink, Brain, Star, Zap, Monitor } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -56,6 +56,16 @@ const AchievementsSection: React.FC = () => {
 
   const achievements = [
     {
+      title: "Automate Me If You Can — PR Winner",
+      organization: "Accomplish × WeMakeDevs",
+      description: "Won the 'Automate Me If You Can' hackathon by raising 4 high-quality PRs for Accomplish (formerly OpenWork). Selected as a PR Winner among 4,000+ global participants for outstanding open-source contributions.",
+      date: "2026",
+      icon: <Star className="w-6 h-6 text-yellow-400" />,
+      image: "/PR_Winner.png",
+      type: "Hackathon Winner",
+      link: "https://www.linkedin.com/posts/wemakedevs_congratulations-to-all-the-pr-track-winners-activity-7436991751791230976-UzlD"
+    },
+    {
       title: "Technology Strategy & Innovation",
       organization: "Deloitte",
       description: "Executed a virtual job simulation focused on business intelligence, strategic implementation of cloud technologies, and data-driven decision making.",
@@ -96,6 +106,26 @@ const AchievementsSection: React.FC = () => {
       image: "/certificate-of-participation.png",
       type: "Hackathon",
       link: "#"
+    },
+    {
+      title: "UI Strikes Back Participant",
+      organization: "WeMakeDevs",
+      description: "Built 'Hackathon Command Center' — a real-time dashboard for managing and tracking hackathon events.",
+      date: "2025",
+      icon: <Monitor className="w-6 h-6 text-cyan-400" />,
+      image: "/ui_strkes.png",
+      type: "Hackathon",
+      link: "/tambo_certificate.pdf"
+    },
+    {
+      title: "2 Fast 2 MCP Participant",
+      organization: "WeMakeDevs",
+      description: "Built 'Archestra Sentinel' — an AI-powered orchestration tool leveraging MCP for autonomous task management.",
+      date: "2025",
+      icon: <Zap className="w-6 h-6 text-orange-400" />,
+      image: "/archestra.png",
+      type: "Hackathon",
+      link: "/2fast2mcp certificate.pdf"
     }
   ];
 
@@ -128,12 +158,17 @@ const AchievementsSection: React.FC = () => {
                   <img
                     src={achievement.image}
                     alt={achievement.title}
-                    className="w-full h-full object-contain p-2 opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+                    className={`w-full h-full opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500 ${achievement.type === 'Hackathon Winner' ? 'object-contain p-3' : 'object-cover'}`}
                   />
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors pointer-events-none" />
                   <div className="absolute top-3 right-3 bg-black/80 backdrop-blur px-2 py-1 rounded-md text-[10px] font-mono uppercase tracking-wider text-slate-400 border border-white/10">
                     {achievement.organization}
                   </div>
+                  {achievement.type === 'Hackathon Winner' && (
+                    <div className="absolute bottom-3 left-3 flex items-center gap-1.5 bg-green-500/90 backdrop-blur text-white text-xs font-bold px-2.5 py-1 rounded-md shadow-lg border border-green-400/30">
+                      🏆 $200 Prize
+                    </div>
+                  )}
                 </div>
               )}
 
