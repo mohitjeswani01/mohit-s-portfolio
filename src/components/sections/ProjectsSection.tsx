@@ -1,10 +1,25 @@
 import React, { useEffect, useRef, useState } from 'react';
 // Removed external GSAP dependency to prevent build errors
-import { Github, ArrowUpRight, Brain, Car, Database, ShoppingBag, Workflow, Youtube, Command, Shield } from 'lucide-react';
+import { Github, ArrowUpRight, Brain, Car, Database, ShoppingBag, Workflow, Youtube, Command, Shield, Activity } from 'lucide-react';
 
 // --- 1. TYPES & DATA ---
 
 const PROJECTS = [
+  {
+    id: 'badminton-coach',
+    title: "AI Badminton-Coach",
+    description: "The Real-Time Multimodal Badminton Coach. A production-ready AI coaching platform providing low latency feedback. Uses a live Stream WebRTC pipeline to analyze player biomechanics (knee bend, elbow extension, racket prep) during drills. Integrates high-speed pose estimation with a multimodal LLM 'brain' for a human-like real-time coaching experience.",
+    tech: ["Stream WebRTC", "Pose Estimation", "Multimodal LLM", "Vision Agents SDK", "FastAPI"],
+    image: "/vission_certificate.png",
+    links: {
+      demo: "https://badminton-coach-nine.vercel.app/",
+      github: "https://github.com/mohitjeswani01/badminton-coach",
+      youtube: "https://www.youtube.com/watch?v=7EnlQNmO5v8"
+    },
+    category: "AI / Vision",
+    icon: Activity,
+    featured: false
+  },
   {
     id: 'archestra-sentinel',
     title: "Archestra Sentinel",

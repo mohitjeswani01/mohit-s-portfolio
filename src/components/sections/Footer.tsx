@@ -3,7 +3,6 @@ import {
   Github,
   Linkedin,
   Mail,
-  Phone,
   ArrowUp,
   MapPin,
   Terminal,
@@ -102,13 +101,7 @@ const Footer: React.FC = () => {
                   </a>
                 </div>
               </li>
-              <li className="flex items-start gap-3 group">
-                <Phone className="w-5 h-5 text-slate-500 group-hover:text-green-400 transition-colors mt-0.5" />
-                <div>
-                  <span className="block text-slate-500 text-xs uppercase tracking-wider font-semibold mb-0.5">Phone</span>
-                  <span className="text-slate-300 text-sm">+91 72764 23350</span>
-                </div>
-              </li>
+
               <li className="flex items-start gap-3 group">
                 <MapPin className="w-5 h-5 text-slate-500 group-hover:text-red-400 transition-colors mt-0.5" />
                 <div>

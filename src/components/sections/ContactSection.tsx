@@ -6,7 +6,6 @@ import { useToast } from '@/hooks/use-toast';
 import {
   Mail,
   MapPin,
-  Phone,
   Send,
   Loader2,
   Copy,
@@ -146,23 +145,7 @@ const ContactSection: React.FC = () => {
                 </button>
               </div>
 
-              {/* Phone Block */}
-              <div className="group flex items-center gap-4 p-4 rounded-xl bg-slate-900/50 border border-slate-800 hover:border-purple-500/50 transition-all duration-300">
-                <div className="p-3 bg-purple-500/10 text-purple-400 rounded-lg">
-                  <Phone className="w-5 h-5" />
-                </div>
-                <div className="flex-1">
-                  <p className="text-sm text-slate-500 font-medium">Phone</p>
-                  <p className="text-slate-200 font-medium">+91 72764 23350</p>
-                </div>
-                <button
-                  onClick={() => copyToClipboard("+917276423350", "Phone")}
-                  className="p-2 text-slate-500 hover:text-white transition-colors"
-                  title="Copy Phone"
-                >
-                  {copiedField === "Phone" ? <CheckCircle2 className="w-4 h-4 text-green-400" /> : <Copy className="w-4 h-4" />}
-                </button>
-              </div>
+
 
               {/* Location Block */}
               <div className="flex items-center gap-4 p-4 rounded-xl bg-slate-900/50 border border-slate-800">

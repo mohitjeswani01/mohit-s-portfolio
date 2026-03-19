@@ -6,112 +6,112 @@ const QA_DATA: { keywords: string[]; answer: string }[] = [
     // Greetings
     {
         keywords: ['hi', 'hello', 'hey', 'hola', 'sup', 'yo'],
-        answer: "Hey! 👋 I'm **Lyra**, Mohit's assistant. He's an incredible developer who builds amazing full-stack apps and AI agents. 🔥 Ask me about his skills, projects, or how to work with him!"
+        answer: "Greetings! 👋 I'm **Lyra**, your personal guide to Mohit’s professional journey. He is a multi-talented developer who excels at building high-performance full-stack applications and cutting-edge AI agents. 🚀 I'm here to answer any questions you have about his technical skills, recent projects, or how to bring his expertise to your team!"
     },
     // Who is Mohit
     {
         keywords: ['who', 'introduce', 'yourself', 'mohit'],
-        answer: "Mohit is a **Software Developer & Data Analyst** (VESIT, Class of 2026). He builds end-to-end digital systems with React, FastAPI, AI, and Data Analytics. He’s a global hackathon winner who ships production-quality code. If you want top-tier talent, he's your guy! 💎🚀"
+        answer: "Mohit Jeswani is a highly driven **Software Developer & Data Analyst** and a final-year Computer Engineering student at VESIT, Class of 2026. 🎓 He specializes in engineering comprehensive, end-to-end digital systems that seamlessly integrate React, FastAPI, and advanced AI. As a global hackathon winner, he is known for shipping production-quality code that solves real-world problems with precision. 💎🚀"
     },
     // Skills
     {
         keywords: ['skills', 'tech', 'stack', 'technologies', 'tools', 'language'],
-        answer: "Mohit's stack is STACKED! 🔥\n\n🔹 **Core:** Java, Python, TS/JS, SQL\n🔹 **Frontend:** React, Next.js, Tailwind\n🔹 **Backend:** Node.js, FastAPI\n🔹 **Data/AI:** Pandas, Power BI, LLMs, AI Agents\n\nHe's a versatile unicorn who masters full-stack dev, data, and AI. 💪"
+        answer: "Mohit's technical stack is incredibly diverse and production-ready! 🔥\n\n🔹 **Core Languages:** Java (OOP), Python, TypeScript, SQL\n🔹 **Modern Frontend:** React, Next.js, Tailwind CSS\n🔹 **Robust Backend:** Node.js, FastAPI, REST APIs\n🔹 **AI & Data Intelligence:** LLMs, Autonomous AI Agents, RAG, Pandas, Power BI\n\nHe is a versatile 'unicorn' developer who can navigate the entire stack, ensuring seamless integration between backend logic and stunning, responsive user interfaces. 💪"
     },
     // Projects
     {
-        keywords: ['project', 'built', 'portfolio', 'made', 'build'],
-        answer: "Mohit engineers real solutions, not just projects! 🚀\n\n🏗️ **Archestra Sentinel:** Enterprise AI governance\n🎯 **Hackathon Command Center:** Generative AI dashboard\n🤖 **AgentZero:** Self-correcting AI agent\n📚 **Edu-Pilot:** AI course generator\n\nCheck out his portfolio for more. He ships production-quality systems! 💎"
+        keywords: ['project', 'built', 'portfolio', 'made', 'build', 'badminton', 'coach'],
+        answer: "Mohit doesn't just build projects; he engineers scalable products that deliver real value! 🚀\n\n🏸 **AI Badminton-Coach:** A real-time multimodal AI coach using Vision Agents SDK and WebRTC for live biomechanic analysis.\n🏗️ **Archestra Sentinel:** An enterprise-grade AI governance and observation platform for secure agentic workflows.\n🎯 **Hackathon Command Center:** A generative UI dashboard that morphs in real-time based on natural language intent.\n🤖 **AgentZero:** An autonomous, self-correcting AI agent orchestrating Kestra workflows and CI/CD pipelines.\n\nHe consistently ships production-level systems that are as beautiful as they are functional! 💎"
     },
     // Hackathons
     {
         keywords: ['hackathon', 'competition', 'wins', 'won', 'achievement', 'award', 'prize'],
-        answer: "Mohit dominates hackathons! 🏆🔥\n\n🥇 **PR Winner** ($200 prize out of 4000+ globally!)\n🎖️ **2 Fast 2 MCP:** Top 10 Swag Winner! 🎁\n🎖️ **AI Agents Assemble** & **UI Strikes Back** & **Syrus Hackathon** veteran.\n\nUnder pressure, he builds incredible things fast. A true 10x developer! 🎯"
+        answer: "Mohit has a proven track record of dominating global hackathons under pressure! 🏆🔥\n\n🥇 **PR Winner:** Secured a $200 prize among 4,000+ global participants for high-quality open-source contributions.\n🎖️ **2 Fast 2 MCP:** Recognized as a Top 10 Swag Winner for building Archestra Sentinel.\n🎖️ **Agentic AI Leader:** A veteran of 'AI Agents Assemble', 'UI Strikes Back', and 'Syrus Hackathon'.\n\nHis ability to rapidly prototype complex AI systems and deliver polished results in competitive environments is truly exceptional. 🎯"
     },
     // Education
     {
         keywords: ['education', 'college', 'degree', 'university', 'study', 'cgpa', 'vesit'],
-        answer: "He is pursuing a **B.E. in Computer Engineering** at VESIT, Mumbai (Class of 2026). But his real education comes from building—shipping real products and dominating hackathons! 📚✨"
+        answer: "Currently, Mohit is pursuing a **B.E. in Computer Engineering** at the prestigious VESIT, Mumbai (Class of 2026). 📚 While he maintains a solid academic foundation, his true expertise comes from his relentless commitment to building—shipping real-world products, exploring new technologies, and winning international competitions to sharpen his engineering craft! ✨"
     },
     // Location
     {
         keywords: ['location', 'where', 'city', 'based', 'live', 'mumbai'],
-        answer: "Based in **Mumbai, India** 📍 but open to remote work and relocation! Distance is no barrier for top talent. 🌍🚀"
+        answer: "Mohit is based in the vibrant tech hub of **Mumbai, India** 📍. However, he is fully equipped for global collaboration and is highly open to both remote roles and relocation opportunities worldwide! Distance is never a barrier when it comes to delivering top-tier engineering talent to your organization. 🌍🚀"
     },
     // Contact
     {
         keywords: ['contact', 'email', 'reach', 'connect', 'message'],
-        answer: "Let's connect! 🤝\n📧 jeswanimohit959@gmail.com\n💼 linkedin.com/in/mohit-jeswani\n🐙 github.com/mohitjeswani01\nOr just use the form in the Contact section. He's super responsive! 🚀"
+        answer: "Mohit is always open to professional networking and interesting collaborations! 🤝\n\n📧 **Email:** jeswanimohit959@gmail.com\n💼 **LinkedIn:** linkedin.com/in/mohit-jeswani\n🐙 **GitHub:** github.com/mohitjeswani01\n\nYou can also find a specialized contact form at the bottom of this page. He's incredibly responsive and would love to hear about your next big idea! 🚀"
     },
     // Resume
     {
         keywords: ['resume', 'cv', 'download'],
-        answer: "Click **'Download CV'** on the homepage! 📄 Once you see his skills and achievements, you'll definitely want him on your team! 🔥"
+        answer: "You can find a download link for his full **CV** conveniently located on the homepage! 📄 Once you review the depth of his technical projects and competitive achievements, you’ll see exactly why he’s a massive asset for any high-growth engineering or AI-focused team! 🔥"
     },
     // Availability / Hire
     {
         keywords: ['available', 'hire', 'freelance', 'open', 'job', 'intern', 'opportunity'],
-        answer: "Yes! Mohit is **actively open to opportunities** 🎉 — Internships, Freelance, or Full-time roles in Software, AI, and Data. Grab this top-tier talent before someone else does! 🚀💼"
+        answer: "Absolutely! Mohit is **actively seeking new opportunities** 🎉, including Internships, Freelance contracts, or Full-time roles in Software Engineering, AI Development, and Data Science. Don't miss out on securing a top-tier developer who can bridge the gap between complex AI logic and intuitive user experiences! 🚀💼"
     },
     // Website / Client work
     {
         keywords: ['website', 'client', 'service', 'build website', 'custom', 'design', 'web development'],
-        answer: "Need a custom, killer app or website? 💻✨ Mohit builds premium, high-performance web solutions. Drop a message in the Contact section to discuss your next big idea! 🚀"
+        answer: "Looking for a custom-built, high-performance application or a premium corporate website? 💻✨ Mohit specializes in creating sophisticated digital solutions that are optimized for speed and user engagement. Drop him a message via the Contact section to start discussing how he can bring your vision to life! 🚀"
     },
     // Pricing
     {
         keywords: ['price', 'cost', 'rate', 'charge', 'budget', 'quote', 'how much'],
-        answer: "Mohit offers **incredible value** with premium quality at competitive rates! 💰 Reach out via the Contact section for a custom quote. 🤝"
+        answer: "Mohit provides **exceptional value** by delivering premium-quality engineering at competitive rates tailored to your project scope! 💰 Whether it's a quick prototype or a full-scale AI integration, reach out through the Contact form to get a personalized quote and discuss your budget requirements. 🤝"
     },
     // Java / OOP
     {
         keywords: ['java', 'oop', 'object oriented'],
-        answer: "Java is one of his **power languages**! ☕🔥 He has deep expertise in OOP and DSA, writing exceptionally clean, enterprise-grade code. 💪"
+        answer: "Java is one of Mohit’s primary **power languages**! ☕🔥 He possesses deep expertise in Object-Oriented Programming (OOP) and Data Structures & Algorithms (DSA), consistently writing clean, documented, and enterprise-grade code that is both scalable and easy to maintain. 💪"
     },
     // React / Frontend
     {
         keywords: ['react', 'frontend', 'next', 'nextjs', 'ui'],
-        answer: "His frontend game is ELITE! 🎨🔥 He builds stunning, animated UIs with **React & Next.js**. Just look at this gorgeous portfolio—every pixel is perfection. ✨"
+        answer: "His frontend development capabilities are truly ELITE! 🎨🔥 Mohit builds breathtaking, highly interactive, and animated user interfaces using **React, Next.js, and Framer Motion**. Just spend a few moments exploring this portfolio—every interaction and pixel is designed for a premium user experience. ✨"
     },
     // Data Analytics
     {
         keywords: ['data', 'analytics', 'analyst', 'power bi', 'tableau', 'pandas'],
-        answer: "He’s a **data storyteller**! 📊✨ Expert in **Python, SQL, Power BI, and Tableau**. Certified by Deloitte & Tata, he builds apps AND analyzes the data. A true unicorn! 🦄"
+        answer: "Mohit is a master **data storyteller**! 📊✨ Expertly skilled in **Python, SQL, Power BI, and Tableau**, he has been certified by industry leaders like Deloitte and Tata Group. He goes beyond just building apps; he analyzes complex datasets to provide the actionable insights your business needs to grow. 🦄"
     },
     // AI / ML
     {
         keywords: ['ai', 'machine learning', 'artificial intelligence', 'llm', 'agent', 'ml'],
-        answer: "At the cutting edge of AI! 🤖🧠 He’s built autonomous agents, real-time vision bots, and LLM-powered apps. If you need next-gen AI, Mohit is leading the charge! 🚀"
+        answer: "Operating at the absolute cutting edge of AI! 🤖🧠 Mohit has engineered autonomous agents, real-time computer vision bots, and LLM-powered applications using the latest frameworks. If your project requires next-generation intelligence and sophisticated automation, he is the engineer you need leading the charge! 🚀"
     },
     // Certifications
     {
         keywords: ['certification', 'certificate', 'certified', 'deloitte', 'tata'],
-        answer: "Validated expertise! ✅ Certified in **Tech Strategy by Deloitte** and **Data Analytics by Tata Group**. He understands business and tech at the highest level! 🏢✨"
+        answer: "His technical expertise is formally validated! ✅ Mohit holds professional certifications in **Tech Strategy from Deloitte** and **Data Visualisation from Tata Group**. These demonstrate his ability to understand both deep technical architectures and high-level business strategy simultaneously. 🏢✨"
     },
     // GitHub
     {
         keywords: ['github', 'repo', 'repository', 'open source', 'code'],
-        answer: "His GitHub is a goldmine! 🐙💎 **github.com/mohitjeswani01** — Full of clean, production-level code, AI agents, and hackathon-winning projects! ⭐"
+        answer: "His GitHub profile is a legitimate goldmine for any engineer or recruiter! 🐙💎 Visit **github.com/mohitjeswani01** to see hundreds of contributions, production-level AI agents, and award-winning hackathon repositories. His commitment to open-source and clean code is evident in every commit! ⭐"
     },
     // Strengths
     {
         keywords: ['strength', 'strong', 'best', 'good at', 'specialize'],
-        answer: "What makes him special? The perfect combo! 💎 He excels at Full-Stack Dev, Data Analytics, and AI. He's a rapid prototyper and a fantastic communicator! 🌟"
+        answer: "What sets Mohit apart? It’s the perfect synergy of technical depth! 💎 He excels in Full-Stack Development, Data Intelligence, and AI Engineering. Combine that with his rapid prototyping speed and excellent communication skills, and you have a developer who can lead a project from concept to deployment! 🌟"
     },
     // Fun / Hobbies
     {
         keywords: ['hobby', 'fun', 'interest', 'free time', 'besides coding'],
-        answer: "Beyond code, Mohit loves dominating hackathons, exploring new AI tech, and building side projects. His passion for tech is contagious! ❤️‍🔥🚀"
+        answer: "When he’s not behind a screen, Mohit loves competing in high-stakes hackathons, exploring the latest breakthroughs in AI research, and brainstorming his next big side project. His genuine passion for solving complex puzzles through technology is what drives him to be a top 1% developer! ❤️‍🔥🚀"
     },
     // Thank you
     {
         keywords: ['thank', 'thanks', 'bye', 'goodbye', 'see you'],
-        answer: "Thanks for stopping by! 😊✨ If you want to work with an amazing developer, reach out at **jeswanimohit959@gmail.com**. Have an awesome day! 🚀✌️"
+        answer: "It’s been a pleasure chatting with you! 😊✨ If you're ready to collaborate with an exceptional developer and AI engineer, don't hesitate to reach out at **jeswanimohit959@gmail.com**. I hope you have an incredible day exploring the rest of Mohit's portfolio! 🚀✌️"
     },
     // Python / SQL specific
     {
         keywords: ['python', 'sql'],
-        answer: "His Python and SQL skills are ELITE! 🐍 From complex SQL optimizations to Python-powered AI and data analytics, he handles it all flawlessly. 📊🔥"
+        answer: "His proficiency in Python and SQL is truly world-class! 🐍 From complex SQL query optimizations to developing sophisticated Python-powered AI models and data pipelines, he handles it all with ease. He ensures your data is not just stored, but intelligently utilized. 📊🔥"
     },
 ];
 

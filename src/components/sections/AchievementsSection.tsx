@@ -126,7 +126,17 @@ const AchievementsSection: React.FC = () => {
       image: "/archestra.png",
       type: "Hackathon",
       link: "/2fast2mcp certificate.pdf"
-    }
+    },
+    {
+      title: "Vision Agents Certified Developer",
+      organization: "Vision Agents",
+      description: "Successfully implemented 'AI Badminton-Coach' using the Vision Agents SDK, integrating real-time pose estimation and multimodal feedback for low-latency coaching.",
+      date: "2026",
+      icon: <Monitor className="w-6 h-6 text-blue-400" />,
+      image: "/vission_certificate.png",
+      type: "Certification",
+      link: "#"
+    },
   ];
 
   return (
