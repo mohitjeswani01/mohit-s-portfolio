@@ -8,9 +8,9 @@ const PROJECTS = [
   {
     id: 'badminton-coach',
     title: "AI Badminton-Coach",
-    description: "The Real-Time Multimodal Badminton Coach. A production-ready AI coaching platform providing low latency feedback. Uses a live Stream WebRTC pipeline to analyze player biomechanics (knee bend, elbow extension, racket prep) during drills. Integrates high-speed pose estimation with a multimodal LLM 'brain' for a human-like real-time coaching experience.",
+    description: "The Real-Time Multimodal Badminton Coach. A production-ready AI coaching platform providing low latency feedback. Uses a live Stream WebRTC pipeline to analyze player biomechanics during drills.",
     tech: ["Stream WebRTC", "Pose Estimation", "Multimodal LLM", "Vision Agents SDK", "FastAPI"],
-    image: "/vission_certificate.png",
+    image: "/badminton.png",
     links: {
       demo: "https://badminton-coach-nine.vercel.app/",
       github: "https://github.com/mohitjeswani01/badminton-coach",
