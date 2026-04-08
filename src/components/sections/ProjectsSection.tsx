@@ -19,6 +19,7 @@ const PROJECTS = [
     category: "AI / Vision",
     icon: Activity,
     featured: false
+    // hi this is mohit 
   },
   {
     id: 'archestra-sentinel',
